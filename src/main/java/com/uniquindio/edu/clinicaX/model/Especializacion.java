@@ -1,5 +1,17 @@
 package com.uniquindio.edu.clinicaX.model;
 
 public enum Especializacion {
-    //agregar las especializaciones
+    ANESTESIOLOGIA,
+    CARDIOLOGIA,
+    CIRUGIAGENERAL,
+    DERMATOLOGIA,
+    GINEGOLOGIA,
+    NEUROLOGIA,
+    OFTALMOLOGIA,
+    ORTOPEDIA,
+    OTORRINOLARINGOLOGIA,
+    PEDIATRIA,
+    PSIQUIATRIA,
+    UROLOGIA,
+    ONCOLOGIA,
 }

@@ -6,5 +6,5 @@ import lombok.*;
 import java.util.List;
 
 public enum EstadoCita {
-    //poner aquí los estados
+    PROGRAMADA, COMPLETADA, CANCELADA
 }

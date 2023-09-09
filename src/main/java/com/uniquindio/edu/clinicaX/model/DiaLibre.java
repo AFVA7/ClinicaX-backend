@@ -15,6 +15,6 @@ public class DiaLibre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     private String dia;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Medico medico;
 }

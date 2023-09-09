@@ -6,5 +6,5 @@ import lombok.*;
 import java.util.List;
 
 public enum EstadoPQRS {
-    //poder aquí los posibles estados
-}
+    NUEVO, ENPROCESO, RESUELTO, ARCHIVADO
+    }

@@ -17,6 +17,6 @@ public class Horario {
     private String dia;
     private String horaInicio;
     private String horaFin;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Medico medico;
 }

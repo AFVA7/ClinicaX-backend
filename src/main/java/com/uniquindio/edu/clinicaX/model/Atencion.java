@@ -17,6 +17,6 @@ public class Atencion {
     private  String diagnostico;
     private String tratamiento;
     private String notasMedicas;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Cita cita;
 }

@@ -22,11 +22,11 @@ public class Cita {
     private String motivo;
     @OneToMany(mappedBy = "cita")
     private List<Pqr> pqrs;
-    @OneToOne(mappedBy = "cita")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "cita")
     private Atencion atencion;
     private EstadoCita estadoCita;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Medico medico;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Paciente paciente;
 }

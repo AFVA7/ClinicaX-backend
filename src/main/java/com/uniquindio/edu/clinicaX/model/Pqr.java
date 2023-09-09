@@ -22,7 +22,7 @@ public class Pqr {
     private String motivo;
     @OneToMany(mappedBy = "pqr")
     private List<Mensaje> mensajes;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cita cita;
     private EstadoPQRS estadoPQRS;
 

@@ -21,11 +21,11 @@ public class Mensaje {
     private LocalDate fechaCreacion;
     private String tipo;
     private String motivo;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Mensaje mensaje;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cuenta cuenta;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Pqr pqr;
 
 }
