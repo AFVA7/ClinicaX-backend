@@ -14,8 +14,11 @@ public class Atencion {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    @Lob
     private  String diagnostico;
+    @Lob
     private String tratamiento;
+    @Lob
     private String notasMedicas;
     @OneToOne(fetch = FetchType.LAZY)
     private Cita cita;

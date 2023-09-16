@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Medico extends  Usuario{
+public class Medico extends Usuario {
     private Especializacion especializacion;
     @OneToMany(mappedBy = "medico")
     private List<DiaLibre> diaLibres;

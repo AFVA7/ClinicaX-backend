@@ -18,8 +18,10 @@ public class Mensaje {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    @Column(nullable = false)
     private LocalDate fechaCreacion;
     private String tipo;
+    @Lob
     private String motivo;
     @OneToOne(fetch = FetchType.LAZY)
     private Mensaje mensaje;

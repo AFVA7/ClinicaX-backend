@@ -17,8 +17,11 @@ public class Cita {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    @Column(nullable = false)
     private LocalDate fechaCreacion;
+    @Column(nullable = false)
     private LocalDate fechaCita;
+    @Lob
     private String motivo;
     @OneToMany(mappedBy = "cita")
     private List<Pqr> pqrs;

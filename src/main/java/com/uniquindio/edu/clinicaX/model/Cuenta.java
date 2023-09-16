@@ -17,7 +17,9 @@ public class Cuenta {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    @Column(nullable = false, length = 80, unique = true)
     private String correo;
+    @Column(nullable = false)
     private String passwd;
     @OneToMany(mappedBy = "cuenta")
     private List<Mensaje> mensajes;

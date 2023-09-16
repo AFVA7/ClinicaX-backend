@@ -17,13 +17,16 @@ public class Pqr {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    @Column(nullable = false)
     private LocalDate fechaCreacion;
     private String tipo;
+    @Lob
     private String motivo;
     @OneToMany(mappedBy = "pqr")
     private List<Mensaje> mensajes;
     @ManyToOne(fetch = FetchType.LAZY)
     private Cita cita;
+    @Column(nullable = false)
     private EstadoPQRS estadoPQRS;
 
 }
