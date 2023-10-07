@@ -21,13 +21,14 @@ public class Cita {
     private LocalDate fechaCreacion;
     @Column(nullable = false)
     private LocalDate fechaCita;
+    //hace falta día LocalDate
     @Lob
     private String motivo;
     @OneToMany(mappedBy = "cita")
-    private List<Pqr> pqrs;
+    private List<Pqrs> pqrs;
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "cita")
     private Atencion atencion;
-    private EstadoCita estadoCita;
+    private EstadoCita estado;
     @ManyToOne(fetch = FetchType.LAZY)
     private Medico medico;
     @ManyToOne(fetch = FetchType.LAZY)

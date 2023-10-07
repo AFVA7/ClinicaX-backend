@@ -1,7 +1,7 @@
 package com.uniquindio.edu.clinicaX.dto;
 
 public record EmailDTO(
-        String para,
+        String destinatario,
         String asunto,
-        String mensaje) {
+        String cuerpo) {
 }

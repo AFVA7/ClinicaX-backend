@@ -1,16 +1,21 @@
 package com.uniquindio.edu.clinicaX.model;
 
 public enum Ciudad {
-     BOGOTA,
-    MEDELLIN,
-    CARTAGENA,
-    CALI,
-    SANTAMARTA,
-    BARRANQUILLA,
-    VILLAVICENCIO,
-    BUCARAMANGA,
-    IBAGUE,
-    ARMENIA,
-    PEREIRA,
-    MANIZALES
+    BOGOTA("Bogota"),
+    MEDELLIN("Medellin"),
+    CARTAGENA("Cartagena"),
+    CALI("Cali"),
+    SANTAMARTA("Santamarta"),
+    BARRANQUILLA("Barranquilla"),
+    VILLAVICENCIO("Villavicencio"),
+    BUCARAMANGA("Bucaramanga"),
+    IBAGUE("Ibague"),
+    ARMENIA("Armenia"),
+    PEREIRA("Pereira"),
+    MANIZALES("Manizales");
+    private String nombre;
+
+    Ciudad(String nombre) {
+        this.nombre = nombre;
+    }
 }
