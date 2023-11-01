@@ -1,6 +1,5 @@
 package co.edu.uniquindio.clinicaX.servicios.impl;
 
-import co.edu.uniquindio.clinicaX.dto.cita.DetalleAtencionMedicaDTO;
 import co.edu.uniquindio.clinicaX.dto.cita.ItemAtencionDTO;
 import co.edu.uniquindio.clinicaX.dto.pqrs.DetallePQRSDTO;
 import co.edu.uniquindio.clinicaX.dto.pqrs.ItemPQRSDTO;
@@ -8,7 +7,7 @@ import co.edu.uniquindio.clinicaX.dto.RegistroRespuestaDTO;
 import co.edu.uniquindio.clinicaX.dto.admin.*;
 import co.edu.uniquindio.clinicaX.dto.cita.ItemCitaDTO;
 import co.edu.uniquindio.clinicaX.model.enums.EstadoPQRS;
-import co.edu.uniquindio.clinicaX.servicios.interfaces.AdministradorServicios;
+import co.edu.uniquindio.clinicaX.servicios.interfaces.AdministradorServicio;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,13 +17,11 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class AdministradorServicioImpl implements AdministradorServicios {
+public class AdministradorServicioImpl implements AdministradorServicio {
 
     private final PQRServicioImpl pqrServicio;
-    private final CitaServiciosImpl citaServicios;
+    private final CitaServicioImpl citaServicios;
     private final MedicoServicioImpl medicoServicio;
-    private final AtencionServicioImpl atencionServicio;
-
 
     @Override
     public int crearMedico(RegistroMedicoDTO medicoDTO) {
@@ -48,7 +45,6 @@ public class AdministradorServicioImpl implements AdministradorServicios {
 
     @Override
     public List<ItemPQRSDTO> ListarPQRS()  {
-
         return pqrServicio.listarPQRS();
     }
 

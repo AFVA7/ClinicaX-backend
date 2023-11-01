@@ -16,21 +16,21 @@ insert into cuenta values(13, 'parra@email.com', '222');
 insert into cuenta values(14, 'arias@email.com', '222');
 insert into cuenta values(15, 'arcila@email.com', '222');
 
-insert into paciente values('24567234', 0, 0, 'Pepito Perez', '5454545', 'url_foto', 'Sin alergias', 1, '1990-01-01', 1, 1);
-insert into paciente values('18635123', 0, 0, 'Juanita Lopez', '4564545', 'url_foto', 'Sin
+insert into paciente values('24567234', 0, 'ACTIVO', 'Pepito Perez', '5454545', 'url_foto', 'Sin alergias', 1, '1990-01-01', 1, 1);
+insert into paciente values('18635123', 0, 'ACTIVO', 'Juanita Lopez', '4564545', 'url_foto', 'Sin
 alergias', 0, '1995-11-28', 1, 2);
-insert into paciente values('78689906', 1, 0, 'Jorge Valencia', '786989', 'url_foto', 'Sin
+insert into paciente values('78689906', 1, 'ACTIVO', 'Jorge Valencia', '786989', 'url_foto', 'Sin
 alergias', 2, '2000-11-28', 1, 3);
-insert into paciente values('798790', 2, 0, 'Maria Adonil', '87676896', 'url_foto', 'Sin
+insert into paciente values('798790', 2, 'ACTIVO', 'Maria Adonil', '87676896', 'url_foto', 'Sin
 alergias', 3, '1964-11-28', 0, 4);
-insert into paciente values('7890798', 3, 0, 'Jose Mazo', '8709789', 'url_foto', 'Sin
+insert into paciente values('7890798', 3, 'ACTIVO', 'Jose Mazo', '8709789', 'url_foto', 'Sin
 alergias', 4, '1953-11-28', 0, 5);
 
-insert into medico values('68907879', 0, 0, 'Zayra Parra', '6989678', 'url_foto', 0, 6);
-insert into medico values('6438756', 0, 0, 'Esteban Garía', '78987', 'url_foto', 1,  7);
-insert into medico values('839580', 1, 0, 'Julian Mazo', '456578', 'url_foto', 2,  8);
-insert into medico values('32543567', 2, 0, 'Luis Angel', '798790', 'url_foto', 3, 9);
-insert into medico values('97980789', 3, 0, 'Cristian Arcila', '567569', 'url_foto', 4, 10);
+insert into medico values('68907879', 0, 'ACTIVO', 'Zayra Parra', '6989678', 'url_foto', 0, 6);
+insert into medico values('6438756', 0, 'ACTIVO', 'Esteban Garía', '78987', 'url_foto', 1,  7);
+insert into medico values('839580', 1, 'ACTIVO', 'Julian Mazo', '456578', 'url_foto', 2,  8);
+insert into medico values('32543567', 2, 'ACTIVO', 'Luis Angel', '798790', 'url_foto', 3, 9);
+insert into medico values('97980789', 3, 'ACTIVO', 'Cristian Arcila', '567569', 'url_foto', 4, 10);
 
 insert into administrador values(11);
 insert into administrador values(12);
@@ -38,12 +38,16 @@ insert into administrador values(13);
 insert into administrador values(14);
 insert into administrador values(15);
 
-insert into cita (codigo, estado, fecha_cita, fecha_creacion, motivo, medico_codigo, paciente_codigo) values(1,0,'2023-11-01 14:30:00', NOW(), 'motivo', 6,1);
-insert into cita (codigo, estado, fecha_cita, fecha_creacion, motivo, medico_codigo, paciente_codigo) values(2,0,'2023-11-02 14:30:00', NOW(), 'motivo', 6,2);
-insert into cita (codigo, estado, fecha_cita, fecha_creacion, motivo, medico_codigo, paciente_codigo) values(3,0,'2023-11-03 14:30:00', NOW(), 'motivo', 8,3);
-insert into cita (codigo, estado, fecha_cita, fecha_creacion, motivo, medico_codigo, paciente_codigo) values(4,0,'2023-11-04 14:30:00', NOW(), 'motivo', 9,4);
-insert into cita (codigo, estado, fecha_cita, fecha_creacion, motivo, medico_codigo, paciente_codigo) values(5,0,'2023-11-05 14:30:00', NOW(), 'motivo', 10,5);
-
+insert into cita values(1,0,'2023-11-01 14:30:00', NOW(), 'motivo',null, 6,1);
+insert into cita values(2,0,'2023-11-02 14:30:00', NOW(), 'motivo',null, 6,2);
+insert into cita values(3,0,'2023-11-03 14:30:00', NOW(), 'motivo',null, 8,3);
+insert into cita values(4,0,'2023-11-04 14:30:00', NOW(), 'motivo',null, 9,4);
+insert into cita values(5,0,'2023-11-05 14:30:00', NOW(), 'motivo',null, 10,5);
+/*siguiendo la lógica primero se crea una cita y después se le da atención, por tanto puedo crear esta cita y no
+  necesariamente debo crear otro registro para atención, esta será la cita para el test crearAtencion,
+  es decir, esta es la cita pendiente por atender*/
+insert into cita values(6,0,'2023-11-05 14:30:00', NOW(), 'motivo',null, 10,5);
+/*una atención obligatoriamente debe estar associada a una cita*/
 insert into atencion values(1,'diagnostico', 'notas medicas', 'tratamiento',1);
 insert into atencion values(2,'diagnostico', 'notas medicas', 'tratamiento',2);
 insert into atencion values(3,'diagnostico', 'notas medicas', 'tratamiento',3);
@@ -67,9 +71,9 @@ insert into pqrs values(2,0,'2023-10-15 14:30:00', '', '',2);
 insert into pqrs values(3,0,'2023-10-15 14:30:00', '', '',3);
 insert into pqrs values(4,0,'2023-10-15 14:30:00', '', '',4);
 insert into pqrs values(5,0,'2023-10-15 14:30:00', '', '',5);
-
-insert into mensaje values(1,'Hola','2023-10-15 14:30:00', '', 1,1,1);
-insert into mensaje values(2,'como estás','2023-10-15 14:30:00', '', 2,2,1);
-insert into mensaje values(3,'contenido','2023-10-15 14:30:00', '', 3,3,1);
-insert into mensaje values(4,'contenido','2023-10-15 14:30:00', '', 4,4,2);
-insert into mensaje values(5,'contenido','2023-10-15 14:30:00', '', 5,5,2);
+/*siguiendo la lógica el primer msj no tieen que tener un msj asociado, a partir del primer msj todas son respuestas*/
+insert into mensaje values(1,'Hola','2023-10-15 14:30:00', '', 1,null,1);
+insert into mensaje values(2,'como estás','2023-10-15 14:30:00', '', 2,1,1);
+insert into mensaje values(3,'contenido','2023-10-15 14:30:00', '', 3,2,1);
+insert into mensaje values(4,'contenido','2023-10-15 14:30:00', '', 4,3,2);
+insert into mensaje values(5,'Hola, soy un paciente','2023-10-15 14:30:00', '', 5,4,2);

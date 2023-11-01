@@ -24,7 +24,7 @@ public class JwtService {
     private String secretKey;
 
 
-    @Value("${jwt.expiration}")
+    @Value("${jwt.expiration}0")
     private long jwtExpiration;
 
 
@@ -45,7 +45,7 @@ public class JwtService {
     private String buildToken(Map<String, Object> extraClaims, UserDetailsImpl userDetails, long expiration) {
 
 
-        List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
+        List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList();
         extraClaims.put("roles", roles);
         extraClaims.put("Uid", userDetails.getCodigo());
 

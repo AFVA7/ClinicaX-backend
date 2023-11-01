@@ -12,7 +12,7 @@ import co.edu.uniquindio.clinicaX.model.enums.EstadoUsuario;
 import co.edu.uniquindio.clinicaX.repositorios.CitaRepo;
 import co.edu.uniquindio.clinicaX.repositorios.HorarioRepo;
 import co.edu.uniquindio.clinicaX.repositorios.MedicoRepo;
-import co.edu.uniquindio.clinicaX.servicios.interfaces.MedicoServicios;
+import co.edu.uniquindio.clinicaX.servicios.interfaces.MedicoServicio;
 import co.edu.uniquindio.clinicaX.servicios.validaciones.registros.ValidacionDeDuplicados;
 import jakarta.transaction.Transactional;
 import jakarta.validation.ValidationException;
@@ -27,16 +27,16 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class MedicoServicioImpl implements MedicoServicios {
+public class MedicoServicioImpl implements MedicoServicio {
     private final CitaRepo citaRepo;
     private final AtencionServicioImpl atencionServicio;
     private final PacienteServicioImpl pacienteServicio;
-    private final DiaLibreServiciosImpl diaLibreServicios;
+    private final DiaLibreServicioImpl diaLibreServicios;
     private final MedicoRepo medicoRepo;
     private final ValidacionDeDuplicados validacion;
     private final HorarioRepo horarioRepo;
     private final PasswordEncoder passwordEncoder;
-    private final CitaServiciosImpl citaServicios;
+    private final CitaServicioImpl citaServicios;
 
     @Override
     public int crearMedico(RegistroMedicoDTO medicoDTO) {
@@ -105,8 +105,8 @@ public class MedicoServicioImpl implements MedicoServicios {
     }
 
     @Override
-    public List<ItemCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception {
-        return pacienteServicio.listarCitasPaciente(codigoPaciente);
+    public List<ItemCitaDTO> listarHistorialPaciente(int codigoPaciente) throws Exception {
+        return citaServicios.listarHistorialPaciente(codigoPaciente);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class MedicoServicioImpl implements MedicoServicios {
 
     @Override
     public DetalleAtencionMedicaDTO verDetalleAtencion(int codigoCita) throws Exception {
-        return atencionServicio.verDetalle(codigoCita);
+        return atencionServicio.verDetalleRelacionadoACita(codigoCita);
     }
 
     private Medico validar(int codigo) {

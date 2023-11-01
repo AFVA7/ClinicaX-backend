@@ -1,3 +1,4 @@
+/*
 package co.edu.uniquindio.clinicaX.dto.security;
 
 import jakarta.validation.constraints.Email;
@@ -22,3 +23,4 @@ public class SesionDTO {
 
 
 }
+*/

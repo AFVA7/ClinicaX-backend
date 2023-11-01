@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 public record AgendarCitaDTO(
         @NotNull  Integer idPaciente,
         Integer idMedico,
-        LocalDateTime fechaCreacion,
         @NotNull @Future LocalDateTime fecha,
         String motivo,
         Especialidad especialidad

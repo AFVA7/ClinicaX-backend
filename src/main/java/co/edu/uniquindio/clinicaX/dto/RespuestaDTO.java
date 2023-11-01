@@ -16,7 +16,8 @@ public record RespuestaDTO(
                 mensaje.getContenido(),
                 mensaje.getCuenta().getCorreo(),
                 mensaje.getFecha(),
-                mensaje.getPqrs().getMotivo()
+                //Expresión ternaria, si es el primer msj, no tiene un msj asociado, por tanto se establece el valor de msj asociado con un msj predeterminado
+                (mensaje.getMensaje() != null) ? mensaje.getMensaje().getContenido() : "No tiene un msj asociado pq es el primer msj"
         );
     }
 

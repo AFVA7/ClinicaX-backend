@@ -24,18 +24,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private CuentaRepo cuentaRepo;
 
-
-    @Autowired
-    private AdminRepo adminRepo;
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Cuenta> cuenta = cuentaRepo.findByCorreo(email);
+        Optional<Cuenta> opcional = cuentaRepo.findByCorreo(email);
 
-        if(cuenta.isEmpty()){
+        if(opcional.isEmpty()){
                 throw new UsernameNotFoundException("El usuario no existe");
         }else{
-            return UserDetailsImpl.build(cuenta.get());
+            return UserDetailsImpl.build(opcional.get());
         }
 
     }

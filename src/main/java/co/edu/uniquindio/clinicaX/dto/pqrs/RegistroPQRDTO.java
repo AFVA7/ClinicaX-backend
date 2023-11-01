@@ -8,8 +8,6 @@ public record RegistroPQRDTO(
         int codigoCita,
         String motivo,
         int codigoPaciente,
-        String tipoPQR,
-        EstadoPQRS estado,
-        LocalDateTime fechaCreacion
+        String tipoPQR
 ) {
 }

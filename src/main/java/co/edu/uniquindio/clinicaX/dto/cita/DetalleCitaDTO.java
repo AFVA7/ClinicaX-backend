@@ -6,7 +6,6 @@ import co.edu.uniquindio.clinicaX.model.enums.EstadoCita;
 import java.time.LocalDateTime;
 
 public record DetalleCitaDTO(
-
     int codigoCita,
     String nombrepaciente,
     String nombremedico,

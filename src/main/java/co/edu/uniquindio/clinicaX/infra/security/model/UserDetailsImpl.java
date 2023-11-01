@@ -15,7 +15,7 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class UserDetailsImpl implements UserDetails {
+    public class UserDetailsImpl implements UserDetails {
 
     private String username, password;
     private int codigo;
@@ -29,7 +29,9 @@ public class UserDetailsImpl implements UserDetails {
         if(user instanceof Paciente){
             authorities.add( new SimpleGrantedAuthority("PACIENTE") );
         }else if(user instanceof Administrador){
-            authorities.add( new SimpleGrantedAuthority("ADMINISTRADOR") );
+            authorities.add( new SimpleGrantedAuthority("ADMIN") );
+        }else{
+            authorities.add( new SimpleGrantedAuthority("MEDICO") );
         }
         return new UserDetailsImpl(user.getCorreo(), user.getPasswd(), user.getCodigo(), authorities);
     }

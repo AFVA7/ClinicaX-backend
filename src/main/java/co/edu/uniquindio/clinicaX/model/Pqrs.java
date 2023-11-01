@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -40,10 +41,11 @@ public class Pqrs implements Serializable {
     private List<Mensaje> mensajes;
 
     public Pqrs(RegistroPQRDTO datos, Cita cita){
-        this.setFechaCreacion(datos.fechaCreacion());
+        this.setFechaCreacion(LocalDateTime.now());
         this.setTipo(datos.tipoPQR());
         this.setMotivo(datos.motivo());
-        this.setEstado(datos.estado());
+        this.setEstado(EstadoPQRS.NUEVO);
         this.setCita(cita);
+        this.mensajes = new ArrayList<>();
     }
 }

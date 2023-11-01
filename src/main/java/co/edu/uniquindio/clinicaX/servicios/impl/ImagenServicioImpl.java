@@ -1,6 +1,6 @@
 package co.edu.uniquindio.clinicaX.servicios.impl;
 
-import co.edu.uniquindio.clinicaX.servicios.interfaces.ImagenServicios;
+import co.edu.uniquindio.clinicaX.servicios.interfaces.ImagenServicio;
 import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
 import jakarta.transaction.Transactional;
@@ -17,7 +17,7 @@ import java.util.Map;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class ImagenServicioImpl implements ImagenServicios {
+public class ImagenServicioImpl implements ImagenServicio {
     private final Cloudinary cloudinary;
 
     public ImagenServicioImpl(){
@@ -33,7 +33,7 @@ public class ImagenServicioImpl implements ImagenServicios {
         File file = convertir(imagen);
 
         return cloudinary.uploader().upload(file, ObjectUtils.asMap("folder",
-                "uniquindio/clinicaX/fotos"));//? es esta rute?
+                "clinica"));//? es esta ruta?
     }
 
     @Override

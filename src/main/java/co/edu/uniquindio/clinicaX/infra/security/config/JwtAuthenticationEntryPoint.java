@@ -1,5 +1,6 @@
 package co.edu.uniquindio.clinicaX.infra.security.config;
 
+import co.edu.uniquindio.clinicaX.dto.security.MensajeDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

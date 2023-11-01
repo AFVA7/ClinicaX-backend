@@ -17,7 +17,7 @@ public record DetallePQRSDTO(
         String nombrePaciente,
         String nombreMedico,
         Especialidad especialidad,
-        LocalDateTime fecha,
+        LocalDateTime fechaDeCreacion,
         List<RespuestaDTO> mensajes) {
     public DetallePQRSDTO(Pqrs pqrs, List<RespuestaDTO> mensajes){
         this(

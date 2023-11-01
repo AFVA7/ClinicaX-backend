@@ -11,13 +11,11 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PacienteTresPQRS {
     private final PQRSRepo pqrsRepo;
-    public void validar(RegistroPQRDTO datos) {
+    public void validarTresPQRS(RegistroPQRDTO datos) {
         //obtiene el num de PQRS activas o en proceso del paciente
-        var numeroDePQRS = pqrsRepo.countByCita_PacienteCodigoAndEstadoAndEstado(datos.codigoPaciente(), EstadoPQRS.ENPROCESO, EstadoPQRS.NUEVO);
+        var numeroDePQRS = pqrsRepo.countByCita_PacienteCodigoOrEstadoAndEstado(datos.codigoPaciente(), EstadoPQRS.ENPROCESO, EstadoPQRS.NUEVO);
         if (numeroDePQRS>=3){
             throw new ValidationException("El paciente ya tiene 3 PQRS activas o en progreso. ");
         }
-
-
     }
 }

@@ -13,6 +13,6 @@ import java.util.List;
 @Repository
 public interface PQRSRepo extends JpaRepository<Pqrs, Integer> {
     List<Pqrs> findAllByCita_PacienteCodigo(int codigoPaciente);
-    Integer countByCita_PacienteCodigoAndEstadoAndEstado(Integer idPaciente, EstadoPQRS estado1, EstadoPQRS estado2);
+    Integer countByCita_PacienteCodigoOrEstadoAndEstado(Integer idPaciente, EstadoPQRS estado1, EstadoPQRS estado2);
     //List<Mensaje> findAllByMensajesCuentaCodigo(int codigoPaciente);
 }

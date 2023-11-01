@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
@@ -35,7 +34,7 @@ public class HorarioMedico implements Serializable {
     public HorarioMedico(HorarioDTO h, Medico medico){
         this.setDia(h.dia());
         this.setHoraInicio(h.horaInicio());
-        this.setHoraFin(h.horaSalida());
+        this.setHoraFin(h.horaFin());
         this.setMedico(medico);
     }
 

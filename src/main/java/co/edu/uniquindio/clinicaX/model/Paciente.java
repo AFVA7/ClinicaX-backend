@@ -77,4 +77,8 @@ public class Paciente extends Usuario implements Serializable {
     public void inactivar() {
         this.setEstado(EstadoUsuario.INACTIVO);
     }
+
+    public void activar() {
+        this.setEstado(EstadoUsuario.ACTIVO);
+    }
 }

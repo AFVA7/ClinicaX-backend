@@ -1,5 +1,6 @@
 package co.edu.uniquindio.clinicaX.model;
 
+import co.edu.uniquindio.clinicaX.dto.RegistroMensajeDTO;
 import co.edu.uniquindio.clinicaX.dto.RegistroRespuestaDTO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -39,10 +40,19 @@ public class Mensaje implements Serializable {
     @JoinColumn(nullable = false)
     private Pqrs pqrs;
 
-    public Mensaje(RegistroRespuestaDTO datos, LocalDateTime fecha, Pqrs pqrs, /*Mensaje mensaje,*/ Cuenta cuenta) {
+    //Este constructor es para crear el primer msj
+    public Mensaje(RegistroMensajeDTO datos, LocalDateTime fecha, Pqrs pqrs, Cuenta cuenta) {
         this.setFecha(fecha);
         this.setContenido(datos.mensaje());
         this.setCuenta(cuenta);
         this.setPqrs(pqrs);
+    }
+    //Este constructor es para respopnder
+    public Mensaje (RegistroRespuestaDTO datos, LocalDateTime fecha, Pqrs pqrs, Mensaje mensaje, Cuenta cuenta) {
+        this.setFecha(fecha);
+        this.setContenido(datos.mensaje());
+        this.setCuenta(cuenta);
+        this.setPqrs(pqrs);
+        this.setMensaje(mensaje);
     }
 }

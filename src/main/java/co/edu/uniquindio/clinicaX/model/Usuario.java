@@ -28,5 +28,6 @@ public class Usuario extends Cuenta {
     private String urlFoto;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private EstadoUsuario estado = EstadoUsuario.ACTIVO;
 }

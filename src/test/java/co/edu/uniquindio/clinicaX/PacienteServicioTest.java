@@ -1,24 +1,17 @@
 package co.edu.uniquindio.clinicaX;
 
-import co.edu.uniquindio.clinicaX.dto.RegistroRespuestaDTO;
-import co.edu.uniquindio.clinicaX.dto.cita.DetalleAtencionMedicaDTO;
+
 import co.edu.uniquindio.clinicaX.dto.cita.ItemCitaDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.FiltroBusquedaDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.ItemPacienteDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.RegistroPacienteDTO;
-import co.edu.uniquindio.clinicaX.dto.pqrs.DetallePQRSDTO;
 import co.edu.uniquindio.clinicaX.dto.pqrs.ItemPQRSDTO;
-import co.edu.uniquindio.clinicaX.dto.pqrs.RegistroPQRDTO;
-import co.edu.uniquindio.clinicaX.model.Cita;
-import co.edu.uniquindio.clinicaX.model.Pqrs;
 import co.edu.uniquindio.clinicaX.model.enums.Ciudad;
 import co.edu.uniquindio.clinicaX.model.enums.Eps;
 import co.edu.uniquindio.clinicaX.model.enums.TipoSangre;
-import co.edu.uniquindio.clinicaX.repositorios.PacienteRepo;
-import co.edu.uniquindio.clinicaX.servicios.impl.PacienteServicioImpl;
+import co.edu.uniquindio.clinicaX.servicios.interfaces.PacienteServicio;
 import jakarta.transaction.Transactional;
-import jakarta.validation.ValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +26,7 @@ import java.util.List;
 @Transactional
 public class PacienteServicioTest {
     @Autowired
-    private PacienteServicioImpl pacienteServicio;
+    private PacienteServicio pacienteServicio;
 
     @Test
     public void reqistrarTest() throws Exception {
@@ -106,7 +99,7 @@ public class PacienteServicioTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void listarCitasPacienteTest() throws Exception {
-        List<ItemCitaDTO> lista = pacienteServicio.listarCitasPaciente(1);
+        List<ItemCitaDTO> lista = pacienteServicio.listarHistorial(1);
         lista.forEach(System.out::println);
         Assertions.assertEquals(1, lista.size());
     }

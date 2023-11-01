@@ -3,47 +3,43 @@ package co.edu.uniquindio.clinicaX.servicios.impl;
 import co.edu.uniquindio.clinicaX.dto.*;
 import co.edu.uniquindio.clinicaX.dto.cita.AgendarCitaDTO;
 import co.edu.uniquindio.clinicaX.dto.cita.DetalleAtencionMedicaDTO;
+import co.edu.uniquindio.clinicaX.dto.cita.DetalleCitaDTO;
 import co.edu.uniquindio.clinicaX.dto.cita.ItemCitaDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.*;
 import co.edu.uniquindio.clinicaX.dto.pqrs.DetallePQRSDTO;
 import co.edu.uniquindio.clinicaX.dto.pqrs.ItemPQRSDTO;
 import co.edu.uniquindio.clinicaX.dto.pqrs.RegistroPQRDTO;
 import co.edu.uniquindio.clinicaX.infra.errors.ValidacionDeIntegridadE;
-import co.edu.uniquindio.clinicaX.model.Cita;
-import co.edu.uniquindio.clinicaX.model.Cuenta;
 import co.edu.uniquindio.clinicaX.model.Paciente;
 import co.edu.uniquindio.clinicaX.model.Pqrs;
 import co.edu.uniquindio.clinicaX.model.enums.EstadoUsuario;
 import co.edu.uniquindio.clinicaX.repositorios.CitaRepo;
 import co.edu.uniquindio.clinicaX.repositorios.PQRSRepo;
 import co.edu.uniquindio.clinicaX.repositorios.PacienteRepo;
-import co.edu.uniquindio.clinicaX.servicios.interfaces.PacienteServicios;
+import co.edu.uniquindio.clinicaX.servicios.interfaces.PacienteServicio;
 import co.edu.uniquindio.clinicaX.servicios.validaciones.registros.ValidacionDeDuplicados;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @Transactional
 @RequiredArgsConstructor//es como escribir el constr de esta clase, instanciando todos sus campos, también se puede usar @AllArgsConstructor
-public class PacienteServicioImpl implements PacienteServicios {
+public class PacienteServicioImpl implements PacienteServicio {
 
     private final PacienteRepo pacienteRepo;
     private final ValidacionDeDuplicados validacion;
-    private final CitaServiciosImpl citaServiciosImpl;
+    private final CitaServicioImpl citaServiciosImpl;
     private final CitaRepo citaRepo;
     private final PQRServicioImpl pqrServicio;
     private final PQRSRepo pqrsRepo;
     private  final PasswordEncoder passwordEncoder;
-    private final CuentaServiciosImpl cuentaServicios;
+    private final CuentaServicioImpl cuentaServicios;
     private final AtencionServicioImpl atencionServicio;
 
     @Override
@@ -56,7 +52,7 @@ public class PacienteServicioImpl implements PacienteServicios {
 
     @Override
     @Transactional
-    public PacienteRespuestaDTO editarPerfil(DetallePacienteDTO datos) {
+    public int editarPerfil(DetallePacienteDTO datos) {
         Optional<Paciente> opcional = pacienteRepo.findById(datos.codigo());
         if( opcional.isEmpty() ){
             throw new ValidacionDeIntegridadE("No existe un paciente con el código "+datos.codigo());
@@ -64,7 +60,7 @@ public class PacienteServicioImpl implements PacienteServicios {
         Paciente paciente = opcional.get();
         validacion.validarActualizacionPaciente(datos);
         paciente.actualizar(datos);
-        return new PacienteRespuestaDTO(paciente);
+        return paciente.getCodigo();
     }
 
     @Override
@@ -91,6 +87,17 @@ public class PacienteServicioImpl implements PacienteServicios {
         paciente.inactivar();
         return "Médico eliminado con éxito";
     }
+    public void activarPaciente(int codigo){
+        Optional<Paciente> optional = pacienteRepo.findById(codigo);
+        if( optional.isEmpty() ){
+            throw new ValidacionDeIntegridadE("No existe un paciente con el código "+codigo);
+        }
+        Paciente paciente = optional.get();
+        if(paciente.getEstado()==EstadoUsuario.ACTIVO){
+            throw new ValidationException("El paciente ya esta activo");
+        }
+        paciente.activar();
+    }
 
     @Override
     public DetallePacienteDTO verDetallePaciente(int codigo)  {
@@ -112,16 +119,16 @@ public class PacienteServicioImpl implements PacienteServicios {
     }
 
     @Override
-    public void agendarCita(AgendarCitaDTO agendarCitaDTO) throws Exception {
-        citaServiciosImpl.agendarCita(agendarCitaDTO);
+    public int agendarCita(AgendarCitaDTO agendarCitaDTO) throws Exception {
+        return citaServiciosImpl.agendarCita(agendarCitaDTO);
+    }
+    //citas que ya han pasado
+    @Override
+    public List<ItemCitaDTO> listarHistorial(int codigoPaciente) throws Exception {
+        return citaServiciosImpl.listarHistorialPaciente(codigoPaciente);
     }
     @Override
-    public List<ItemCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception {
-        return citaServiciosImpl.listarCitasPendientesPaciente(codigoPaciente);
-    }
-
-    @Override
-    public List<ItemCitaDTO> listarCitasPendientesPaciente(int codigoPaciente) {
+    public List<ItemCitaDTO> listarCitasPendientes(int codigoPaciente) {
         return  citaServiciosImpl.listarCitasPendientesPaciente(codigoPaciente);
     }
 

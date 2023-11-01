@@ -5,7 +5,7 @@ import co.edu.uniquindio.clinicaX.model.DiaLibre;
 import java.time.LocalDate;
 
 public record DiaLibreDTO(
-        int codigo,
+        Integer codigo,
         int codigoMedico,
         LocalDate fecha
 ) {
