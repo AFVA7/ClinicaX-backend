@@ -1,19 +1,10 @@
 package co.edu.uniquindio.clinicaX.controller;
 
-import co.edu.uniquindio.clinicaX.dto.RegistroRespuestaDTO;
-import co.edu.uniquindio.clinicaX.dto.admin.RegistroMedicoDTO;
 import co.edu.uniquindio.clinicaX.dto.cita.AgendarCitaDTO;
-import co.edu.uniquindio.clinicaX.dto.cita.DetalleAtencionMedicaDTO;
-import co.edu.uniquindio.clinicaX.dto.cita.DetalleCitaDTO;
-import co.edu.uniquindio.clinicaX.dto.cita.ItemCitaDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.DetallePacienteDTO;
-import co.edu.uniquindio.clinicaX.dto.paciente.FiltroBusquedaDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.ItemPacienteDTO;
-import co.edu.uniquindio.clinicaX.dto.paciente.RegistroPacienteDTO;
-import co.edu.uniquindio.clinicaX.dto.pqrs.DetallePQRSDTO;
 import co.edu.uniquindio.clinicaX.dto.pqrs.ItemPQRSDTO;
-import co.edu.uniquindio.clinicaX.dto.pqrs.RegistroPQRDTO;
-import co.edu.uniquindio.clinicaX.dto.security.MensajeDTO;
+import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.PacienteServicio;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

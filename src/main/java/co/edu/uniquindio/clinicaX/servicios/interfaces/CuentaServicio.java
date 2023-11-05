@@ -1,6 +1,6 @@
 package co.edu.uniquindio.clinicaX.servicios.interfaces;
 
-import co.edu.uniquindio.clinicaX.dto.NuevaPasswordDTO;
+import co.edu.uniquindio.clinicaX.dto.paciente.NuevaPasswordDTO;
 import co.edu.uniquindio.clinicaX.model.Cuenta;
 
 public interface CuentaServicio {

@@ -1,14 +1,12 @@
 package co.edu.uniquindio.clinicaX.controller;
 
-import co.edu.uniquindio.clinicaX.dto.RegistroRespuestaDTO;
 import co.edu.uniquindio.clinicaX.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.clinicaX.dto.admin.ItemMedicoDto;
 import co.edu.uniquindio.clinicaX.dto.admin.RegistroMedicoDTO;
 import co.edu.uniquindio.clinicaX.dto.cita.ItemAtencionDTO;
 import co.edu.uniquindio.clinicaX.dto.cita.ItemCitaDTO;
-import co.edu.uniquindio.clinicaX.dto.pqrs.DetallePQRSDTO;
 import co.edu.uniquindio.clinicaX.dto.pqrs.ItemPQRSDTO;
-import co.edu.uniquindio.clinicaX.dto.security.MensajeDTO;
+import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
 import co.edu.uniquindio.clinicaX.model.enums.EstadoPQRS;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.AdministradorServicio;
 import jakarta.validation.Valid;

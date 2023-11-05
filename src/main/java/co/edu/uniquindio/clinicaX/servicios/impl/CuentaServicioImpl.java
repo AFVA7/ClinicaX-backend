@@ -1,7 +1,7 @@
 package co.edu.uniquindio.clinicaX.servicios.impl;
 
 import co.edu.uniquindio.clinicaX.dto.EmailDTO;
-import co.edu.uniquindio.clinicaX.dto.NuevaPasswordDTO;
+import co.edu.uniquindio.clinicaX.dto.paciente.NuevaPasswordDTO;
 import co.edu.uniquindio.clinicaX.model.Cuenta;
 import co.edu.uniquindio.clinicaX.repositorios.CuentaRepo;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.CuentaServicio;

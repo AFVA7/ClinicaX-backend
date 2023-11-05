@@ -1,11 +1,10 @@
 package co.edu.uniquindio.clinicaX.infra.errors;
 
-import co.edu.uniquindio.clinicaX.dto.security.MensajeDTO;
+import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

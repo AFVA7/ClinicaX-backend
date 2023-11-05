@@ -2,8 +2,7 @@ package co.edu.uniquindio.clinicaX.controller;
 
 import co.edu.uniquindio.clinicaX.dto.cita.DetalleAtencionMedicaDTO;
 import co.edu.uniquindio.clinicaX.dto.cita.ItemAtencionDTO;
-import co.edu.uniquindio.clinicaX.dto.medico.RegistroAtencionDTO;
-import co.edu.uniquindio.clinicaX.dto.security.MensajeDTO;
+import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.AtencionServicio;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

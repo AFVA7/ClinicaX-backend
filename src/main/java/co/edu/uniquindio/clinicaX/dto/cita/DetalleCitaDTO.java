@@ -1,6 +1,7 @@
 package co.edu.uniquindio.clinicaX.dto.cita;
 
 import co.edu.uniquindio.clinicaX.model.Cita;
+import co.edu.uniquindio.clinicaX.model.enums.Especialidad;
 import co.edu.uniquindio.clinicaX.model.enums.EstadoCita;
 
 import java.time.LocalDateTime;
@@ -9,18 +10,20 @@ public record DetalleCitaDTO(
     int codigoCita,
     String nombrepaciente,
     String nombremedico,
+    Especialidad especialidad,
     LocalDateTime fecha,
     String motivo,
     EstadoCita estado
 ) {
-    public DetalleCitaDTO(Cita cita) {
+    public DetalleCitaDTO(Cita c) {
         this(
-                cita.getCodigo(),
-                cita.getPaciente().getNombre(),
-                cita.getMedico().getNombre(),
-                cita.getFechaCita(),
-                cita.getMotivo(),
-                cita.getEstado()
+                c.getCodigo(),
+                c.getPaciente().getNombre(),
+                c.getMedico().getNombre(),
+                c.getMedico().getEspecialidad(),
+                c.getFechaCita(),
+                c.getMotivo(),
+                c.getEstado()
         );
     }
 }

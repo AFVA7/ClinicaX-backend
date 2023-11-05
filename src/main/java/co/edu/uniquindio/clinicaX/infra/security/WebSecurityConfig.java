@@ -40,6 +40,7 @@ public class WebSecurityConfig {
     private static final String[] openUrls =
             {
                     "/api/auth/**",
+                    "/api/clinica/**",
             };
     private static final String[] medicosUrls =
             {

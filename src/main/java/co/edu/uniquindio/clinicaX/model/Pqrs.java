@@ -2,6 +2,7 @@ package co.edu.uniquindio.clinicaX.model;
 
 import co.edu.uniquindio.clinicaX.dto.pqrs.RegistroPQRDTO;
 import co.edu.uniquindio.clinicaX.model.enums.EstadoPQRS;
+import co.edu.uniquindio.clinicaX.model.enums.TipoPQRS;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,7 +26,7 @@ public class Pqrs implements Serializable {
     @Column(nullable = false)
     private LocalDateTime fechaCreacion;
 
-    private String tipo;
+    private TipoPQRS tipo;
 
     @Lob
     private String motivo;

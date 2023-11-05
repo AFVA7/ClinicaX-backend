@@ -1,6 +1,7 @@
 package co.edu.uniquindio.clinicaX.dto;
 
 import co.edu.uniquindio.clinicaX.ClinicaXApplication;
+import co.edu.uniquindio.clinicaX.dto.paciente.NuevaPasswordDTO;
 import co.edu.uniquindio.clinicaX.repositorios.PacienteRepo;
 import co.edu.uniquindio.clinicaX.servicios.impl.CuentaServicioImpl;
 import jakarta.transaction.Transactional;

@@ -1,7 +1,7 @@
 package co.edu.uniquindio.clinicaX.controller;
 
 import co.edu.uniquindio.clinicaX.dto.ImagenDTO;
-import co.edu.uniquindio.clinicaX.dto.security.MensajeDTO;
+import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.ImagenServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

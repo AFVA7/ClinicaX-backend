@@ -1,11 +1,8 @@
 package co.edu.uniquindio.clinicaX.controller;
 
-import co.edu.uniquindio.clinicaX.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.clinicaX.dto.cita.*;
-import co.edu.uniquindio.clinicaX.dto.medico.RegistroAtencionDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.FiltroBusquedaDTO;
-import co.edu.uniquindio.clinicaX.dto.pqrs.DetallePQRSDTO;
-import co.edu.uniquindio.clinicaX.dto.security.MensajeDTO;
+import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.CitaServicio;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

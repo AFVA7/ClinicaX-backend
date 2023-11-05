@@ -3,7 +3,7 @@ package co.edu.uniquindio.clinicaX.controller;
 import co.edu.uniquindio.clinicaX.dto.RegistroRespuestaDTO;
 import co.edu.uniquindio.clinicaX.dto.pqrs.DetallePQRSDTO;
 import co.edu.uniquindio.clinicaX.dto.pqrs.RegistroPQRDTO;
-import co.edu.uniquindio.clinicaX.dto.security.MensajeDTO;
+import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.PQRServicio;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

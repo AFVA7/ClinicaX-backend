@@ -33,7 +33,7 @@ public class PQRSServicioTest {
                 1,
                 "motivo",
                 1,
-                "tipo"
+                TipoPQRS.QUEJA
         );
         int nuevo = pqrServicio.crearPQRS(datos);
         Assertions.assertNotEquals(0, nuevo);

@@ -2,7 +2,7 @@ package co.edu.uniquindio.clinicaX.controller;
 
 import co.edu.uniquindio.clinicaX.dto.LoginDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.RegistroPacienteDTO;
-import co.edu.uniquindio.clinicaX.dto.security.MensajeDTO;
+import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
 import co.edu.uniquindio.clinicaX.dto.security.TokenDTO;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.AutenticacionServicio;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.PacienteServicio;

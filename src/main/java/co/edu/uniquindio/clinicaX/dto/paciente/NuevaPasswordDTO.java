@@ -1,4 +1,4 @@
-package co.edu.uniquindio.clinicaX.dto;
+package co.edu.uniquindio.clinicaX.dto.paciente;
 
 public record NuevaPasswordDTO(
         int codigoCuenta,

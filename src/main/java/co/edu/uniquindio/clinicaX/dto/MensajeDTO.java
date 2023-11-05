@@ -1,4 +1,4 @@
-package co.edu.uniquindio.clinicaX.dto.security;
+package co.edu.uniquindio.clinicaX.dto;
 
 public record MensajeDTO<T>(
         Boolean valor,

@@ -2,9 +2,13 @@ package co.edu.uniquindio.clinicaX.servicios.impl;
 
 import co.edu.uniquindio.clinicaX.model.enums.*;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.ClinicaServicio;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ClinicaServicioImpl implements ClinicaServicio {
     @Override
     public List<Ciudad> listarCiudades() {
