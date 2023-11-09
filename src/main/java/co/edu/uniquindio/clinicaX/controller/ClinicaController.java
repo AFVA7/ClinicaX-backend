@@ -35,7 +35,6 @@ public class ClinicaController {
 
     @GetMapping("/lista-eps")
     public ResponseEntity<MensajeDTO<List<Eps>>> listarEps() {
-
         return ResponseEntity.ok().body(new MensajeDTO<>(false, clinicaServicio.listarEps()));
     }
 

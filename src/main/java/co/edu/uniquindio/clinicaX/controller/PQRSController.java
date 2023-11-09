@@ -15,14 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/pqrs")
 public class PQRSController {
     private final PQRServicio pqrServicio;
-    @PostMapping("/crear-pqrs")
-    ResponseEntity<MensajeDTO<String>> crearPQRS(@RequestBody @Valid RegistroPQRDTO datos) throws Exception{
-        int codigo = pqrServicio.crearPQRS(datos);
-        int codigoUltimoMensaje = pqrServicio.verDetallePQRS(codigo).mensajes().size();
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, "PQRS generada con éxito, numero de radicado: "+codigo+"\n" +
-                "mensaje: "+ (codigoUltimoMensaje-1)));
 
-    }
     @PostMapping("/responder-pqrs")
     ResponseEntity<MensajeDTO<String>> responderPQRS(@RequestBody @Valid RegistroRespuestaDTO datos) throws Exception{
         pqrServicio.responderPQRS(datos);

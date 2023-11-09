@@ -1,3 +1,4 @@
+/*
 package co.edu.uniquindio.clinicaX.infra.security;
 
 import co.edu.uniquindio.clinicaX.model.Cuenta;
@@ -57,3 +58,4 @@ public class TokenService {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-05:00"));
     }
 }
+*/

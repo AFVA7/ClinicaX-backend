@@ -5,6 +5,8 @@ import co.edu.uniquindio.clinicaX.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.ItemPacienteDTO;
 import co.edu.uniquindio.clinicaX.dto.pqrs.ItemPQRSDTO;
 import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
+import co.edu.uniquindio.clinicaX.dto.pqrs.RegistroPQRDTO;
+import co.edu.uniquindio.clinicaX.servicios.interfaces.PQRServicio;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.PacienteServicio;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import java.util.List;
 @RequestMapping("/api/pacientes")
 public class PacienteController {
     private final PacienteServicio pacienteServicio;
+    private final PQRServicio pqrServicio;
     @PutMapping("/editar-perfil")
     public ResponseEntity<MensajeDTO<String>> editarPerfil(@Valid @RequestBody DetallePacienteDTO pacienteDTO) throws Exception{
         pacienteServicio.editarPerfil(pacienteDTO);
@@ -56,5 +59,12 @@ public class PacienteController {
     @GetMapping("/listar-pqrs/{codigo}")
     ResponseEntity<MensajeDTO<List<ItemPQRSDTO>>>  listarPQRSPaciente(@PathVariable int codigo) throws Exception{
         return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.listarPQRSPaciente(codigo)));
+    }
+    @PostMapping("/crear-pqrs")
+    ResponseEntity<MensajeDTO<String>> crearPQRS(@RequestBody @Valid RegistroPQRDTO datos) throws Exception{
+        int codigo = pqrServicio.crearPQRS(datos);
+        int codigoUltimoMensaje = pqrServicio.verDetallePQRS(codigo).mensajes().size();
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, "PQRS generada con éxito, numero de radicado: "+codigo+"\n" +
+                "mensaje: "+ (codigoUltimoMensaje)));
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
 import static co.edu.uniquindio.clinicaX.model.enums.Roles.*;
 
 @Configuration
@@ -41,6 +42,10 @@ public class WebSecurityConfig {
             {
                     "/api/auth/**",
                     "/api/clinica/**",
+                    "/actuator/**",
+                    "/doc/**",
+                    "/swagger-ui/**",
+                    "/api/imagenes/**"
             };
     private static final String[] medicosUrls =
             {
@@ -69,7 +74,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(Customizer.withDefaults())
+                .cors(Customizer.withDefaults())//defaul significa que va a leer el meth que se llame corsConfigurationSource
                 .sessionManagement(sess->sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req->
                     req

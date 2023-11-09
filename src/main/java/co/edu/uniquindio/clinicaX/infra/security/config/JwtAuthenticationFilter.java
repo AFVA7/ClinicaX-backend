@@ -25,18 +25,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws ServletException, IOException {
 
-// Configuración de cabeceras para CORS
-        res.addHeader("Access-Control-Allow-Origin", "*");
-        res.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        res.addHeader("Access-Control-Allow-Headers", "Origin, Accept, Content-Type, Authorization");
-        res.addHeader("Access-Control-Allow-Credentials", "true");
-        if (req.getMethod().equals("OPTIONS")) {
-            res.setStatus(HttpServletResponse.SC_OK);
-        } else {
-            String requestURI = req.getRequestURI();
-            String token = getToken(req);
-            boolean error = true;
 //Acá va lo mismo que teníamos en el método anterior. Lo de las rutas y validaciones.
+            String token = getToken(req);
             try {
                 if (token != null) {
                     String username = jwtService.extractUsername(token);
@@ -59,7 +49,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 e.printStackTrace();
             }
             chain.doFilter(req, res);
-        }
+
 
     }
 

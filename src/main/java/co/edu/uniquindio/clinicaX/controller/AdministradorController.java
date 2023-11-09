@@ -9,6 +9,7 @@ import co.edu.uniquindio.clinicaX.dto.pqrs.ItemPQRSDTO;
 import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
 import co.edu.uniquindio.clinicaX.model.enums.EstadoPQRS;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.AdministradorServicio;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/admins")
+@SecurityRequirement(name = "bearer-key")
 public class AdministradorController {
     private final AdministradorServicio adminServicios;
     @PostMapping("/crear-medico")
