@@ -30,4 +30,11 @@ public class AutenticacionController {
         int codigo = pacienteServicio.registrarse(pacienteDTO);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Paciente "+codigo+" registrado correctamente"));
     }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<MensajeDTO<TokenDTO>> registrarse(@Valid @RequestBody TokenDTO tokenDTO) throws Exception{
+        TokenDTO nuevoToken = autenticacionServicio.refreshToken(tokenDTO);
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, nuevoToken));
+    }
+
 }

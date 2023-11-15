@@ -5,4 +5,7 @@ import co.edu.uniquindio.clinicaX.dto.security.TokenDTO;
 
 public interface AutenticacionServicio {
     TokenDTO login(LoginDTO loginDTO);
+
+    TokenDTO refreshToken(TokenDTO tokenDTO) throws Exception;
+
 }
