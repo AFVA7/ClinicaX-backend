@@ -3,7 +3,6 @@ package co.edu.uniquindio.clinicaX.servicios.impl;
 import co.edu.uniquindio.clinicaX.dto.*;
 import co.edu.uniquindio.clinicaX.dto.cita.AgendarCitaDTO;
 import co.edu.uniquindio.clinicaX.dto.cita.DetalleAtencionMedicaDTO;
-import co.edu.uniquindio.clinicaX.dto.cita.DetalleCitaDTO;
 import co.edu.uniquindio.clinicaX.dto.cita.ItemCitaDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.*;
 import co.edu.uniquindio.clinicaX.dto.pqrs.DetallePQRSDTO;
@@ -13,7 +12,6 @@ import co.edu.uniquindio.clinicaX.infra.errors.ValidacionDeIntegridadE;
 import co.edu.uniquindio.clinicaX.model.Paciente;
 import co.edu.uniquindio.clinicaX.model.Pqrs;
 import co.edu.uniquindio.clinicaX.model.enums.EstadoUsuario;
-import co.edu.uniquindio.clinicaX.repositorios.CitaRepo;
 import co.edu.uniquindio.clinicaX.repositorios.PQRSRepo;
 import co.edu.uniquindio.clinicaX.repositorios.PacienteRepo;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.PacienteServicio;
@@ -35,7 +33,6 @@ public class PacienteServicioImpl implements PacienteServicio {
     private final PacienteRepo pacienteRepo;
     private final ValidacionDeDuplicados validacion;
     private final CitaServicioImpl citaServiciosImpl;
-    private final CitaRepo citaRepo;
     private final PQRServicioImpl pqrServicio;
     private final PQRSRepo pqrsRepo;
     private  final PasswordEncoder passwordEncoder;
@@ -53,14 +50,19 @@ public class PacienteServicioImpl implements PacienteServicio {
     @Override
     @Transactional
     public int editarPerfil(DetallePacienteDTO datos) {
+
+        Paciente paciente = validar(datos);
+        validacion.validarActualizacionPaciente(datos);
+        paciente.actualizar(datos);
+        return paciente.getCodigo();
+    }
+
+    private Paciente validar(DetallePacienteDTO datos) {
         Optional<Paciente> opcional = pacienteRepo.findById(datos.codigo());
         if( opcional.isEmpty() ){
             throw new ValidacionDeIntegridadE("No existe un paciente con el código "+datos.codigo());
         }
-        Paciente paciente = opcional.get();
-        validacion.validarActualizacionPaciente(datos);
-        paciente.actualizar(datos);
-        return paciente.getCodigo();
+        return opcional.get();
     }
 
     @Override

@@ -36,7 +36,8 @@ public class WebSecurityConfig {
             {
                     "/api/pacientes/**",
                     "/api/citas/cancelar",
-                    "/api/citas/citas-pendientes-paciente/{codigo}",
+                    "/api/citas/citas-pendientes-paciente/{codigo}"
+
             };
     private static final String[] openUrls =
             {
@@ -59,7 +60,7 @@ public class WebSecurityConfig {
                     "/api/pqrs/**",
                     "/api/mensajes/**",
                     "/api/citas/filtrar-por-medico/{codigoMedico}",
-                    "/api/citas/filtrar-por-fecha"
+                    "/api/citas/filtrar-por-fecha",
             };
     private static final String[] pacienteAdminMedicos =
             {

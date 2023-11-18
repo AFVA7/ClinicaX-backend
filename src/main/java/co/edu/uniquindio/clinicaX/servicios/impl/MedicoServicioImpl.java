@@ -57,7 +57,7 @@ public class MedicoServicioImpl implements MedicoServicio {
     public String acualizarMedico(DetalleMedicoDTO medicoDTO) throws Exception {
         Medico medico = validar(medicoDTO.codigo());
         medico.actualizar(medicoDTO);
-        //Como el objeto paciente ya tiene un id, el save() no crea un nuevo registro sino que actualiza el que ya existe
+        //Como el objeto medico ya tiene un id, el save() no crea un nuevo registro sino que actualiza el que ya existe
         medicoRepo.save(medico);//si es necesario?
 
         return "Médico " + medico.getCodigo() + " actualizado con éxito";

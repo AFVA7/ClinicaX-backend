@@ -37,7 +37,6 @@ public class CuentaServicioImpl implements CuentaServicio {
                 "Recuperación de contraseña",
                 "Hola, para recuperar tu contraseña ingresa al siguiente link: https://api/recuperar-pasword/"+parametro
         ));
-
     }
 
     @Override
@@ -47,7 +46,7 @@ public class CuentaServicioImpl implements CuentaServicio {
         int codigoCuenta = Integer.parseInt(datos[0]);
         LocalDateTime fecha = LocalDateTime.parse(datos[1]);
         if (fecha.plusMinutes(30).isBefore(LocalDateTime.now())){
-            throw new Exception("Ell link de recuperación ha expirado");
+            throw new Exception("El link de recuperación ha expirado");
         }
         Cuenta cuenta = obtenerCuentaCodigo(codigoCuenta);
         cuenta.setPasswd(passwordEncoder.encode(nuevaPasswordDTO.nuevaPasswd()));

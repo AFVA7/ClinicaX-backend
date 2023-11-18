@@ -10,6 +10,8 @@ import co.edu.uniquindio.clinicaX.repositorios.PacienteRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 @RequiredArgsConstructor
 public class ValidacionDeDuplicados {
@@ -46,15 +48,26 @@ public class ValidacionDeDuplicados {
 
     public void validarActualizacionPaciente(DetallePacienteDTO datos){
         Paciente paciente = pacienteRepo.getReferenceById(datos.codigo());
-        if(!datos.cedula().equals(paciente.getCedula())){
-            if (estaRepetidaCedulaPaciente(datos.cedula())){
-                throw new ValidacionDeIntegridadE("La cédula "+datos.cedula()+" ya está en uso");
-            }
-            if (estaRepetidoCorreoPaciente(datos.correo())){
-                throw new ValidacionDeIntegridadE("El correo "+datos.correo()+" ya está en uso");
-            }
+        // Verifica si la cédula está en uso por otro paciente
+        if (estaRepetidaCedulaParaOtroPaciente(datos.cedula(), paciente)) {
+            throw new ValidacionDeIntegridadE("La cédula " + datos.cedula() + " ya está en uso");
+        }
+        // Verifica si el correo está en uso por otro paciente
+        if (estaRepetidoCorreoParaOtroPaciente(datos.correo(), paciente)) {
+            throw new ValidacionDeIntegridadE("El correo " + datos.correo() + " ya está en uso");
         }
 
+    }
+    //TODO
+    private boolean estaRepetidoCorreoParaOtroPaciente(String correo, Paciente paciente) {
+        Optional<Paciente> pacienteExistente = pacienteRepo.findByCorreoAndCodigoNot(correo, paciente.getCodigo());
+        return pacienteExistente.isPresent();
+    }
+
+    //TODO
+    private boolean estaRepetidaCedulaParaOtroPaciente(String cedula, Paciente paciente) {
+        Optional<Paciente> pacienteExistente = pacienteRepo.findByCedulaAndCodigoNot(cedula, paciente.getCodigo());
+        return pacienteExistente.isPresent();
     }
 
     private boolean estaRepetidoCorreoPaciente(String correo) {

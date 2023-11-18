@@ -1,10 +1,12 @@
 package co.edu.uniquindio.clinicaX.infra.security.servicios;
 
+import co.edu.uniquindio.clinicaX.infra.errors.UsuarioInactivoException;
 import co.edu.uniquindio.clinicaX.infra.security.model.UserDetailsImpl;
 import co.edu.uniquindio.clinicaX.model.Administrador;
 import co.edu.uniquindio.clinicaX.model.Cuenta;
 import co.edu.uniquindio.clinicaX.model.Paciente;
 import co.edu.uniquindio.clinicaX.model.Usuario;
+import co.edu.uniquindio.clinicaX.model.enums.EstadoUsuario;
 import co.edu.uniquindio.clinicaX.repositorios.AdminRepo;
 import co.edu.uniquindio.clinicaX.repositorios.CuentaRepo;
 import co.edu.uniquindio.clinicaX.repositorios.MedicoRepo;
@@ -27,10 +29,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Cuenta> opcional = cuentaRepo.findByCorreo(email);
-
         if(opcional.isEmpty()){
-                throw new UsernameNotFoundException("El usuario no existe");
+            throw new UsernameNotFoundException("El usuario no existe");
         }else{
+
+            if( opcional.get() instanceof Usuario ){
+                if( ((Usuario) opcional.get()).getEstado() == EstadoUsuario.INACTIVO ){
+                    throw new UsuarioInactivoException("El usuario no está activo");
+                }
+            }
+
             return UserDetailsImpl.build(opcional.get());
         }
 

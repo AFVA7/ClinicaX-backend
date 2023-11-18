@@ -44,11 +44,7 @@ public class PacienteController {
         pacienteServicio.activarPaciente(codigo);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Paciente activado"));
     }
-    @GetMapping("/recuperar-passwd/{email}")
-    public ResponseEntity<MensajeDTO<String>> recuperarPasswd(@Valid @PathVariable String email) throws Exception {
-        pacienteServicio.recuperarPasswd(email);
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Contraseña recuperada"));
-    }
+
 
     @PostMapping("/agendar-cita")
     public ResponseEntity<MensajeDTO<String>> agendarCita(@Valid @RequestBody AgendarCitaDTO datos)throws Exception{

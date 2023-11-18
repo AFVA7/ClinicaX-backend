@@ -15,7 +15,7 @@ public class GlobalException {
     //va desde lo particular a lo general
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<MensajeDTO<String>> badCredentialsException(BadCredentialsException e){
-        return ResponseEntity.internalServerError().body( new MensajeDTO<>(true, "Los datos son incorrectos")
+        return ResponseEntity.internalServerError().body( new MensajeDTO<>(true, e.getMessage())
         );
     }
 

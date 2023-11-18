@@ -1,5 +1,6 @@
 package co.edu.uniquindio.clinicaX.servicios.impl;
 
+import co.edu.uniquindio.clinicaX.dto.admin.ItemMedicoDto;
 import co.edu.uniquindio.clinicaX.model.enums.*;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.ClinicaServicio;
 import jakarta.transaction.Transactional;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ClinicaServicioImpl implements ClinicaServicio {
+    private final MedicoServicioImpl medicoServicio;
     @Override
     public List<Ciudad> listarCiudades() {
         return List.of(Ciudad.values());
@@ -38,5 +41,10 @@ public class ClinicaServicioImpl implements ClinicaServicio {
     @Override
     public List<EstadoPQRS> listarEstadoPQRS() {
         return List.of(EstadoPQRS.values());
+    }
+
+    @Override
+    public List<ItemMedicoDto> listarMedicos() throws Exception {
+        return medicoServicio.listarMedicos();
     }
 }
