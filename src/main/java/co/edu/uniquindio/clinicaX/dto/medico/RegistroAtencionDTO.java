@@ -1,7 +1,7 @@
 package co.edu.uniquindio.clinicaX.dto.medico;
 
 public record RegistroAtencionDTO(
-        int codigoCita,
+        Integer codigoCita,
         int codigoMedico,
         String notasMedicas,
         String tratamiento,
