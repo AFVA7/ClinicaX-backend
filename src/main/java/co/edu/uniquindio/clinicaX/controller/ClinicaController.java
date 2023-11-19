@@ -44,4 +44,13 @@ public class ClinicaController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, clinicaServicio.listarMedicos()));
     }
 
+    @GetMapping("/listar-motivos-cancelamiento")
+    public ResponseEntity<MensajeDTO<List<MotivoCancelamiento>>> listarMotivosCancelamiento() {
+        System.out.println("hola");
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, clinicaServicio.listarMotivosCancelamiento()));
+    }
+    @GetMapping("/lista-tipo-pqrs")
+    public ResponseEntity<MensajeDTO<List<TipoPQRS>>> listarTipoPQRS() {
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, clinicaServicio.listarTipoPQRS()));
+    }
 }

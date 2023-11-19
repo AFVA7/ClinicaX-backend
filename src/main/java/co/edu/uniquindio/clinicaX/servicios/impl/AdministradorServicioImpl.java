@@ -60,7 +60,7 @@ public class AdministradorServicioImpl implements AdministradorServicio {
 
     @Override
     public List<ItemAtencionDTO> historialDeConsultas(int codigoMedico) {
-        return citaServicios.listarTodasCitasMedico(codigoMedico);
+        return citaServicios.listarTodasCitasAtendidasMedico(codigoMedico);
     }
 
     @Override

@@ -47,4 +47,14 @@ public class ClinicaServicioImpl implements ClinicaServicio {
     public List<ItemMedicoDto> listarMedicos() throws Exception {
         return medicoServicio.listarMedicos();
     }
+
+    @Override
+    public List<MotivoCancelamiento> listarMotivosCancelamiento() {
+        return List.of(MotivoCancelamiento.values());
+    }
+
+    @Override
+    public List<TipoPQRS> listarTipoPQRS() {
+        return List.of(TipoPQRS.values());
+    }
 }

@@ -16,14 +16,18 @@ import java.util.List;
 public class CitaController {
     private final CitaServicio citaServicios;
 
-    @DeleteMapping("/cancelar")
+    @PostMapping("/cancelar")
     public ResponseEntity<MensajeDTO<String>> cancelarCita(@Valid @RequestBody CancelamientoCitaDTO datos) throws Exception{
         citaServicios.cancelarCita(datos);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Cita cancelada correctamente"));
     }
     @GetMapping("/listar-todas/{codigo}")
-    public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>>  listarTodasLasCitasDeUnPaciente(@PathVariable int codigo) throws Exception {
+    public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>>  listarTodasLasCitasDeUnPaciente(@PathVariable int codigo) {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, citaServicios.listarTodasLasCitasDeUnPaciente(codigo)));
+    }
+    @GetMapping("/listar-citas-para-pqrs/{codigo}")
+    public ResponseEntity<MensajeDTO<List<DetalleCitaDTO>>>  listarCitasParaPQRS(@PathVariable int codigo) {
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, citaServicios.listarCitasParaPQRS(codigo)));
     }
 
     @GetMapping("/listar-historial/{codigo}")

@@ -35,7 +35,9 @@ public interface CitaServicio {
     int atenderCita(RegistroAtencionDTO datos);
     //todas las consultas que ha realizado un medico
     //param
-    List<ItemAtencionDTO> listarTodasCitasMedico(int codigoMedico);
+    List<ItemAtencionDTO> listarTodasCitasAtendidasMedico(int codigoMedico);
+
+    List<DetalleCitaDTO> listarCitasParaPQRS(int codigo);
 
     //admin
 

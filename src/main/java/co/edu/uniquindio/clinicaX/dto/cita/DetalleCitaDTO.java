@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 public record DetalleCitaDTO(
     int codigoCita,
-    String nombrepaciente,
-    String nombremedico,
+    String nombrePaciente,
+    String nombreMedico,
     Especialidad especialidad,
     LocalDateTime fecha,
     String motivo,

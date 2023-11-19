@@ -35,7 +35,6 @@ public class CitaServicioImpl implements CitaServicio {
     private final CitaRepo citaRepo;
     private final PacienteRepo pacienteRepo;
     private final MedicoRepo medicoRepo;
-    private final AtencionRepo atencionRepo;
     private final AtencionServicioImpl atencionServicio;
     private final EmailServicio emailServicios;
     @Autowired
@@ -177,8 +176,17 @@ public class CitaServicioImpl implements CitaServicio {
     }
 
     @Override
-    public List<ItemAtencionDTO> listarTodasCitasMedico(int codigoMedico) {
+    public List<ItemAtencionDTO> listarTodasCitasAtendidasMedico(int codigoMedico) {
         return atencionServicio.listar(codigoMedico);
+    }
+
+    @Override
+    public List<DetalleCitaDTO> listarCitasParaPQRS(int codigo) {
+        List<Cita> citas = citaRepo.findAllByPacienteCodigo(codigo);
+        if (citas.isEmpty()) {
+            throw new ValidationException("El paciente no tiene citas");
+        }
+        return citas.stream().map(DetalleCitaDTO::new).toList();
     }
 
     public Paciente validaPaciente(int codigo){
