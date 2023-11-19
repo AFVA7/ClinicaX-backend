@@ -21,6 +21,11 @@ public class CitaController {
         citaServicios.cancelarCita(datos);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Cita cancelada correctamente"));
     }
+    @GetMapping("/listar-todas/{codigo}")
+    public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>>  listarTodasLasCitasDeUnPaciente(@PathVariable int codigo) throws Exception {
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, citaServicios.listarTodasLasCitasDeUnPaciente(codigo)));
+    }
+
     @GetMapping("/listar-historial/{codigo}")
     public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>>  listarHistorialPaciente(@PathVariable int codigo) throws Exception {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, citaServicios.listarHistorialPaciente(codigo)));

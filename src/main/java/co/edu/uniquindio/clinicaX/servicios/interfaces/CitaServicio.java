@@ -12,7 +12,8 @@ public interface CitaServicio {
     int agendarCita(AgendarCitaDTO datos) throws Exception;
     //requisito adicional
     void cancelarCita(CancelamientoCitaDTO datos);
-    public List<ItemCitaDTO> listarCitas();
+    List<ItemCitaDTO> listarCitas();
+    List<ItemCitaDTO> listarTodasLasCitasDeUnPaciente(int codigo);
     //En todo momento, el paciente podrá ver todo el historial de atenciones que ha tenido
     //citas que ya han pasado, tienen atención o no si la cita se ha cancelado
     List<ItemCitaDTO> listarHistorialPaciente(int codigoPaciente);

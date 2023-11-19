@@ -102,6 +102,17 @@ public class CitaServicioImpl implements CitaServicio {
     }
 
     @Override
+    public List<ItemCitaDTO> listarTodasLasCitasDeUnPaciente(int codigo) {
+        List<Cita> citas = citaRepo.findAllByPacienteCodigo(codigo);
+        if(citas.isEmpty()){
+            throw new ValidationException("No existen citas creadas para el paciente " + codigo);
+        }
+        return citas.stream()
+                .map(ItemCitaDTO::new)
+                .toList();
+    }
+
+    @Override
     public List<ItemCitaDTO> listarHistorialPaciente(int codigoPaciente) {
         List<Cita> citas = citaRepo.findHistorial(codigoPaciente);
         if(citas.isEmpty()){
