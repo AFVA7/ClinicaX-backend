@@ -26,9 +26,9 @@ public class MensajeController {
         mensajeServicio.eliminar(codigo);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Mensaje eliminado"));
     }
-    @GetMapping("/listar-medicos")
-    public ResponseEntity<MensajeDTO<List<RespuestaDTO>>> listar() throws Exception {
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, mensajeServicio.listar()));
+    @GetMapping("/listar/{codigo}")
+    public ResponseEntity<MensajeDTO<List<RespuestaDTO>>> listarMensajesDeUnPQRS(@PathVariable int codigo)  {
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, mensajeServicio.listar(codigo)));
     }
     @GetMapping("/detalle-mensaje/{codigo}")
     public ResponseEntity<MensajeDTO<RespuestaDTO>> obtener(@PathVariable int codigo) throws Exception{

@@ -3,6 +3,7 @@ package co.edu.uniquindio.clinicaX.servicios.impl;
 import co.edu.uniquindio.clinicaX.dto.RegistroMensajeDTO;
 import co.edu.uniquindio.clinicaX.dto.RegistroRespuestaDTO;
 import co.edu.uniquindio.clinicaX.dto.RespuestaDTO;
+import co.edu.uniquindio.clinicaX.dto.pqrs.ItemPQRSDTO;
 import co.edu.uniquindio.clinicaX.infra.errors.ValidacionDeIntegridadE;
 import co.edu.uniquindio.clinicaX.model.Cuenta;
 import co.edu.uniquindio.clinicaX.model.Mensaje;
@@ -67,8 +68,15 @@ public class MensajeServicioImpl implements MensajeServicio {
         return respuesta.getCodigo();
     }
     @Override
-    public List<RespuestaDTO> listar() {
-        return null;
+    public List<RespuestaDTO> listar(int codigo) {
+        List<Mensaje> listaMensajes = mensajeRepo.findAllByPqrsCodigo(codigo);
+        if(listaMensajes.isEmpty()){
+            throw new ValidationException("No existen msjs asociados");
+        }
+
+        return listaMensajes.stream()
+                .map(RespuestaDTO::new)
+                .toList();
     }
 
     @Override
