@@ -3,7 +3,7 @@ import co.edu.uniquindio.clinicaX.model.*;
 import co.edu.uniquindio.clinicaX.model.enums.Especialidad;
 
 public record ItemMedicoDto(
-        int codigo,
+        Integer codigo,
         String nombre,
         String cedula,
         String urlFoto,

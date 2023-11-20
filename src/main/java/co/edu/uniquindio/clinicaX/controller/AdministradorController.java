@@ -42,6 +42,10 @@ public class AdministradorController {
     public ResponseEntity<MensajeDTO<DetalleMedicoDTO>> obtenerMedico(@PathVariable int codigo) throws Exception{
         return ResponseEntity.ok().body(new MensajeDTO<>(false, adminServicios.obtenerMedico(codigo)));
     }
+    @GetMapping("/listar-medicos")
+    public ResponseEntity<MensajeDTO<List<ItemMedicoDto>>> listarMedicos() throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, adminServicios.listarMedicos()));
+    }
     @GetMapping("/listar-pqrs")
     ResponseEntity<MensajeDTO<List<ItemPQRSDTO>>> ListarPQRS() throws Exception{
         return ResponseEntity.ok().body(new MensajeDTO<>(false, adminServicios.ListarPQRS()));
