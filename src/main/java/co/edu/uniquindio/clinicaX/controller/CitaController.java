@@ -40,7 +40,7 @@ public class CitaController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, citaServicios.listarCitasPendientesPaciente(codigo)));
     }
     @GetMapping("/detalle-cita/{codigo}")
-    ResponseEntity<MensajeDTO<DetalleCitaDTO>> verDetalleCita(@PathVariable int codigo) throws Exception{
+    ResponseEntity<MensajeDTO<DetalleCitaDTO>> verDetalleCita(@PathVariable int codigo) {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, citaServicios.verDetalleCita(codigo)));
     }
     @GetMapping("/filtrar-por-medico/{codigoMedico}")

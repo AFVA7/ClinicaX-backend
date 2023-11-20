@@ -21,7 +21,7 @@ public class MedicoSinDiaLibre implements ValidadorDiaLibre{
         System.out.println(diasLibres);
 
         if (!diasLibres.isEmpty()) {
-            throw new ValidationException("El médico ya tiene un día libre registrado. No puede registrar más de un día libre a la vez.");
+            throw new ValidationException("El médico ya tiene un día libre registrado. No puede registrar más de un día libre a la vez. debe esperar a que pase su día agendado");
         }
 
     }

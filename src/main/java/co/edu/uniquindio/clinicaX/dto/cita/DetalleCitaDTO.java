@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 public record DetalleCitaDTO(
     int codigoCita,
+    Integer codigoPaciente,
     String nombrePaciente,
     String nombreMedico,
     Especialidad especialidad,
@@ -18,6 +19,7 @@ public record DetalleCitaDTO(
     public DetalleCitaDTO(Cita c) {
         this(
                 c.getCodigo(),
+                c.getPaciente().getCodigo(),
                 c.getPaciente().getNombre(),
                 c.getMedico().getNombre(),
                 c.getMedico().getEspecialidad(),
