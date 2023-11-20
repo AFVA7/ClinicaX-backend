@@ -1,10 +1,12 @@
 package co.edu.uniquindio.clinicaX.controller;
 
 
+import co.edu.uniquindio.clinicaX.dto.cita.ItemAtencionDTO;
 import co.edu.uniquindio.clinicaX.dto.cita.ItemCitaDTO;
 import co.edu.uniquindio.clinicaX.dto.medico.DiaLibreDTO;
 import co.edu.uniquindio.clinicaX.dto.medico.RegistroAtencionDTO;
 import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
+import co.edu.uniquindio.clinicaX.servicios.interfaces.AdministradorServicio;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.MedicoServicio;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import java.util.List;
 @RequestMapping("/api/medicos")
 public class MedicoController {
     private final MedicoServicio medicoServicio;
+    private final AdministradorServicio adminServicios;
 
     @PostMapping("/atender-cita")
     public ResponseEntity<MensajeDTO<String>> atenderCita(@Valid @RequestBody RegistroAtencionDTO datos)throws Exception{
@@ -29,8 +32,10 @@ public class MedicoController {
         medicoServicio.agendarDiaLibre(diaLibreDTO);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Día libre agendado"));
     }
-    @GetMapping("/listar-citas-realizadas/{codigo}")
-    public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>> listarCitasRealizadasMedico(@PathVariable int codigo) throws Exception {
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoServicio.listarCitasRealizadasMedico(codigo)));
+    @GetMapping("/listar-atenciones/{codigoMedico}")
+    ResponseEntity<MensajeDTO<List<ItemAtencionDTO>>> historialDeConsultas(@PathVariable int codigoMedico){
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, adminServicios.historialDeConsultas(codigoMedico)));
     }
+
+
 }

@@ -9,6 +9,7 @@ import co.edu.uniquindio.clinicaX.dto.pqrs.ItemPQRSDTO;
 import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
 import co.edu.uniquindio.clinicaX.model.enums.EstadoPQRS;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.AdministradorServicio;
+import co.edu.uniquindio.clinicaX.servicios.interfaces.MedicoServicio;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ import java.util.List;
 @SecurityRequirement(name = "bearer-key")
 public class AdministradorController {
     private final AdministradorServicio adminServicios;
+    private final MedicoServicio medicoServicio;
     @PostMapping("/crear-medico")
     public ResponseEntity<MensajeDTO<String>> crearMedico(@Valid @RequestBody RegistroMedicoDTO medico)throws Exception{
         int codigo  = adminServicios.crearMedico(medico);
@@ -55,11 +57,11 @@ public class AdministradorController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, adminServicios.listarCitas()));
     }
 
-    @GetMapping("/listar-atenciones/{codigoMedico}")
-    ResponseEntity<MensajeDTO<List<ItemAtencionDTO>>> historialDeConsultas(@PathVariable int codigoMedico){
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, adminServicios.historialDeConsultas(codigoMedico)));
-    }
 
+    @GetMapping("/listar-citas-realizadas/{codigo}")
+    public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>> listarCitasRealizadasMedico(@PathVariable int codigo) throws Exception {
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoServicio.listarCitasRealizadasMedico(codigo)));
+    }
 
     @PutMapping("/cambiar-estado-pqrs/{codigo}/{estado}")
     ResponseEntity<MensajeDTO<String>> cambiarEstadoPQRS(@PathVariable int codigo, @PathVariable EstadoPQRS estado) throws Exception{
