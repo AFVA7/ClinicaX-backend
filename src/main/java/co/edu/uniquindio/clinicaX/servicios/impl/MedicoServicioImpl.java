@@ -30,7 +30,6 @@ import java.util.stream.Collectors;
 public class MedicoServicioImpl implements MedicoServicio {
     private final CitaRepo citaRepo;
     private final AtencionServicioImpl atencionServicio;
-    private final PacienteServicioImpl pacienteServicio;
     private final DiaLibreServicioImpl diaLibreServicios;
     private final MedicoRepo medicoRepo;
     private final ValidacionDeDuplicados validacion;

@@ -35,6 +35,6 @@ public interface CitaRepo extends JpaRepository<Cita, Integer> {
     // relación entre Cita y Medico a través de Atencion
     List<Cita> findAllByAtencionCitaMedicoCodigo(int codigoMedico);
 
-    boolean existsByMedicoCodigoAndFechaCitaBetween(int codigo, LocalDateTime primerHorario, LocalDateTime ultimoHorario);
-    boolean existsByCodigoAndEstado(int codigo, EstadoCita estado);
+    Boolean existsByMedicoCodigoAndFechaCitaBetween(int codigo, LocalDateTime primerHorario, LocalDateTime ultimoHorario);
+    Boolean existsByCodigoAndEstado(int codigo, EstadoCita estado);
 }
