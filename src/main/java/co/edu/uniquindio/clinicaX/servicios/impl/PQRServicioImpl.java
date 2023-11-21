@@ -12,7 +12,6 @@ import co.edu.uniquindio.clinicaX.repositorios.CitaRepo;
 import co.edu.uniquindio.clinicaX.repositorios.MensajeRepo;
 import co.edu.uniquindio.clinicaX.repositorios.PQRSRepo;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.PQRServicio;
-import co.edu.uniquindio.clinicaX.servicios.validaciones.agendar.ValidadorDeCitas;
 import co.edu.uniquindio.clinicaX.servicios.validaciones.pqrs.PacienteTresPQRS;
 import co.edu.uniquindio.clinicaX.servicios.validaciones.pqrs.ValidadorPQRS;
 import jakarta.transaction.Transactional;
@@ -30,7 +29,6 @@ import java.util.Optional;
 public class PQRServicioImpl implements PQRServicio {
     private final PQRSRepo pqrsRepo;
     private final CitaRepo citaRepo;
-    private final PacienteTresPQRS validacion;
     private final MensajeRepo mensajeRepo;
     private final MensajeServicioImpl mensajeServicios;
     @Autowired
@@ -83,9 +81,6 @@ public class PQRServicioImpl implements PQRServicio {
     }
     private List<RespuestaDTO> convertirRespuestasDTO(List<Mensaje> mensajes) {
         return mensajes.stream().map(RespuestaDTO::new).toList();
-    }
-    public Pqrs obtener(int codigo){
-        return validarPqrs(codigo);
     }
     private Cita validarCita(int codigo) {
         Optional<Cita> opcional = citaRepo.findById(codigo);

@@ -1,10 +1,7 @@
 package co.edu.uniquindio.clinicaX.servicios.validaciones.pqrs;
 
 import co.edu.uniquindio.clinicaX.dto.pqrs.RegistroPQRDTO;
-import co.edu.uniquindio.clinicaX.model.enums.EstadoPQRS;
 import co.edu.uniquindio.clinicaX.repositorios.AtencionRepo;
-import co.edu.uniquindio.clinicaX.repositorios.CitaRepo;
-import co.edu.uniquindio.clinicaX.repositorios.PQRSRepo;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

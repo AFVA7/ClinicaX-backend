@@ -4,7 +4,6 @@ import co.edu.uniquindio.clinicaX.dto.medico.RegistroAtencionDTO;
 import co.edu.uniquindio.clinicaX.infra.errors.ValidacionDeIntegridadE;
 import co.edu.uniquindio.clinicaX.model.Cita;
 import co.edu.uniquindio.clinicaX.repositorios.CitaRepo;
-import co.edu.uniquindio.clinicaX.servicios.interfaces.CitaServicio;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

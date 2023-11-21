@@ -1,14 +1,11 @@
 package co.edu.uniquindio.clinicaX.repositorios;
 
-import co.edu.uniquindio.clinicaX.model.Atencion;
 import co.edu.uniquindio.clinicaX.model.Cita;
-import co.edu.uniquindio.clinicaX.model.Medico;
 import co.edu.uniquindio.clinicaX.model.enums.EstadoCita;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
