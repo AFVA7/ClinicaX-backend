@@ -29,8 +29,8 @@ public class DiaLibreController {
         diaLibreServicio.eliminar(codigo);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Eliminar eliminado correctamente"));
     }
-    @GetMapping("/detalle/{codigo}")
-    public ResponseEntity<MensajeDTO<DetalleDiaLibreDTO>> obtener(@PathVariable int codigo) throws Exception{
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, diaLibreServicio.obtener(codigo)));
+    @GetMapping("/detalle/{codigoMedico}")
+    public ResponseEntity<MensajeDTO<DetalleDiaLibreDTO>> obtener(@PathVariable int codigoMedico) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, diaLibreServicio.obtener(codigoMedico)));
     }
 }

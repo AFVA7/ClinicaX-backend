@@ -51,7 +51,8 @@ public class WebSecurityConfig {
     private static final String[] medicosUrls =
             {
                     "/api/medicos/**",
-                    "/api/atenciones/**",
+                    "/api/atenciones/actualizar/{codigo}",
+                    "/api/atenciones//eliminar/{codigo}",
                     "/api/citas/citas-pendientes-medico/{codigo}",
                     "/api/dia-libre/**",
             };
@@ -69,7 +70,8 @@ public class WebSecurityConfig {
             };
     private static final String[] pacienteMedicos =
             {
-                    "/api/imagenes/**"
+                    "/api/imagenes/**",
+                    "/api/atenciones/detalle/{codigo}"
             };
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

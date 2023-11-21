@@ -13,8 +13,10 @@ public interface ClinicaServicio {
     List<EstadoCita> listarEstadoCita();
     List<EstadoPQRS> listarEstadoPQRS();
     List<ItemMedicoDto> listarMedicos() throws Exception;
+    List<ItemMedicoDto> obtenerMedicosPorEspecialidad(Especialidad especialidad) throws Exception;
 
     List<MotivoCancelamiento> listarMotivosCancelamiento();
     List<TipoPQRS> listarTipoPQRS() ;
+
 
 }

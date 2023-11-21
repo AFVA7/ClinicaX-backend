@@ -1,11 +1,13 @@
 package co.edu.uniquindio.clinicaX.controller;
 
 import co.edu.uniquindio.clinicaX.dto.cita.AgendarCitaDTO;
+import co.edu.uniquindio.clinicaX.dto.cita.DetalleAtencionMedicaDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.clinicaX.dto.paciente.ItemPacienteDTO;
 import co.edu.uniquindio.clinicaX.dto.pqrs.ItemPQRSDTO;
 import co.edu.uniquindio.clinicaX.dto.MensajeDTO;
 import co.edu.uniquindio.clinicaX.dto.pqrs.RegistroPQRDTO;
+import co.edu.uniquindio.clinicaX.servicios.interfaces.AtencionServicio;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.PQRServicio;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.PacienteServicio;
 import jakarta.validation.Valid;
@@ -21,6 +23,7 @@ import java.util.List;
 public class PacienteController {
     private final PacienteServicio pacienteServicio;
     private final PQRServicio pqrServicio;
+    private final AtencionServicio atencionServicios;
     @PutMapping("/editar-perfil")
     public ResponseEntity<MensajeDTO<String>> editarPerfil(@Valid @RequestBody DetallePacienteDTO pacienteDTO) throws Exception{
         pacienteServicio.editarPerfil(pacienteDTO);

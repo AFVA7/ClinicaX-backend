@@ -2,20 +2,22 @@ package co.edu.uniquindio.clinicaX.dto.admin;
 import co.edu.uniquindio.clinicaX.model.*;
 import co.edu.uniquindio.clinicaX.model.enums.Especialidad;
 
+import java.util.List;
+
 public record ItemMedicoDto(
         Integer codigo,
         String nombre,
-        String cedula,
         String urlFoto,
-        Especialidad especialidad
+        Especialidad especialidad,
+        List<HorarioDTO> horarios
 ) {
     public ItemMedicoDto(Medico medico) {
         this(
                 medico.getCodigo(),
                 medico.getNombre(),
-                medico.getCedula(),
                 medico.getUrlFoto(),
-                medico.getEspecialidad()
+                medico.getEspecialidad(),
+                medico.getHorarios().stream().map(HorarioDTO::new).toList()
         );
     }
 }

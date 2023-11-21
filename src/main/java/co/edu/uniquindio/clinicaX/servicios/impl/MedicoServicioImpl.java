@@ -8,6 +8,7 @@ import co.edu.uniquindio.clinicaX.dto.medico.RegistroAtencionDTO;
 import co.edu.uniquindio.clinicaX.model.Cita;
 import co.edu.uniquindio.clinicaX.model.HorarioMedico;
 import co.edu.uniquindio.clinicaX.model.Medico;
+import co.edu.uniquindio.clinicaX.model.enums.Especialidad;
 import co.edu.uniquindio.clinicaX.model.enums.EstadoUsuario;
 import co.edu.uniquindio.clinicaX.repositorios.CitaRepo;
 import co.edu.uniquindio.clinicaX.repositorios.HorarioRepo;
@@ -127,6 +128,17 @@ public class MedicoServicioImpl implements MedicoServicio {
     @Override
     public DetalleAtencionMedicaDTO verDetalleAtencion(int codigoCita) throws Exception {
         return atencionServicio.verDetalleRelacionadoACita(codigoCita);
+    }
+
+    @Override
+    public List<ItemMedicoDto> obtenerMedicosPorEspecialidad(Especialidad especialidad) {
+        List<Medico> medicos = medicoRepo.findAllByEspecialidadAndEstado(especialidad, EstadoUsuario.ACTIVO);
+        if (medicos.isEmpty()) {
+            throw new ValidationException("No hay médicos activos con esa especialidad");
+        }
+        return medicos.stream()
+                .map(ItemMedicoDto::new)
+                .collect(Collectors.toList());
     }
 
     private Medico validar(int codigo) {

@@ -78,9 +78,9 @@ public class DiaLibreServicioImpl implements DiaLibreServicio {
     }
 
     private DiaLibre validarDia (int codigo){
-        Optional<DiaLibre> opcional = diaLibreRepo.findById(codigo);
+        Optional<DiaLibre> opcional = diaLibreRepo.findByMedicoCodigo(codigo);
         if( opcional.isEmpty() ){
-            throw new ValidacionDeIntegridadE("No existe un dia libre con el código "+codigo);
+            throw new ValidacionDeIntegridadE("No existe un dia libre para el médico "+codigo);
         }
         return opcional.get();
     }

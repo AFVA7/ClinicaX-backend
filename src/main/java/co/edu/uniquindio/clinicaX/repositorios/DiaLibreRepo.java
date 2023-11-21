@@ -7,9 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface DiaLibreRepo extends JpaRepository<DiaLibre, Integer> {
     List<DiaLibre> findByMedicoCodigoAndDiaIsNull(int codigoMedico);
     List<DiaLibre> findByMedicoCodigoAndDiaIsNotNull(int codigoMedico);
+    Optional<DiaLibre> findByMedicoCodigo(int codigoMedico);
 }

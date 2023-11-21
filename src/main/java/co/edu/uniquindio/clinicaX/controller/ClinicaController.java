@@ -7,6 +7,7 @@ import co.edu.uniquindio.clinicaX.servicios.interfaces.ClinicaServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,6 +40,10 @@ public class ClinicaController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, clinicaServicio.listarEps()));
     }
 
+    @GetMapping("/listar-medicos/{especialidad}")
+    public ResponseEntity<MensajeDTO<List<ItemMedicoDto>>> obtenerMedicosPorEspecialidad(@PathVariable Especialidad especialidad) throws Exception {
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, clinicaServicio.obtenerMedicosPorEspecialidad(especialidad)));
+    }
     @GetMapping("/listar-medicos")
     public ResponseEntity<MensajeDTO<List<ItemMedicoDto>>> listarMedicos() throws Exception {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, clinicaServicio.listarMedicos()));

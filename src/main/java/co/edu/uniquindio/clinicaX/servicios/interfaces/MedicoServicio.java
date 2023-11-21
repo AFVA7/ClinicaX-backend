@@ -6,6 +6,7 @@ import co.edu.uniquindio.clinicaX.dto.cita.ItemCitaDTO;
 import co.edu.uniquindio.clinicaX.dto.admin.ItemMedicoDto;
 import co.edu.uniquindio.clinicaX.dto.admin.RegistroMedicoDTO;
 import co.edu.uniquindio.clinicaX.dto.medico.*;
+import co.edu.uniquindio.clinicaX.model.enums.Especialidad;
 
 import java.util.List;
 
@@ -23,4 +24,5 @@ public interface MedicoServicio {
     DetalleAtencionMedicaDTO verDetalleAtencion(int codigoCita) throws Exception;
 
 
+    List<ItemMedicoDto> obtenerMedicosPorEspecialidad(Especialidad especialidad);
 }

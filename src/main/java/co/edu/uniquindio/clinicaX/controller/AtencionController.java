@@ -17,7 +17,7 @@ import java.util.List;
 public class AtencionController {
     private final AtencionServicio atencionServicios;
 
-    @PutMapping("/actualizar")
+    @PutMapping("/actualizar/{codigo}")
     public ResponseEntity<MensajeDTO<DetalleAtencionMedicaDTO>> update(@Valid @RequestBody DetalleAtencionMedicaDTO datos) throws Exception{
         return ResponseEntity.ok().body(new MensajeDTO<>(false, atencionServicios.update(datos)
         ));
@@ -26,10 +26,6 @@ public class AtencionController {
     public ResponseEntity<MensajeDTO<String>> eliminar(@PathVariable int codigo) throws Exception{
         atencionServicios.eliminar(codigo);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Atención removida correctamente"));
-    }
-    @GetMapping("/listar/{codigo}")
-    public ResponseEntity<MensajeDTO<List<ItemAtencionDTO>>> listar(@PathVariable int codigo) throws Exception {
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, atencionServicios.listar(codigo)));
     }
     @GetMapping("/detalle/{codigo}")
     public ResponseEntity<MensajeDTO<DetalleAtencionMedicaDTO>> verDetalle(@PathVariable int codigo) throws Exception{
