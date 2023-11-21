@@ -12,7 +12,6 @@ import co.edu.uniquindio.clinicaX.repositorios.CitaRepo;
 import co.edu.uniquindio.clinicaX.repositorios.MensajeRepo;
 import co.edu.uniquindio.clinicaX.repositorios.PQRSRepo;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.PQRServicio;
-import co.edu.uniquindio.clinicaX.servicios.validaciones.pqrs.PacienteTresPQRS;
 import co.edu.uniquindio.clinicaX.servicios.validaciones.pqrs.ValidadorPQRS;
 import jakarta.transaction.Transactional;
 import jakarta.validation.ValidationException;
