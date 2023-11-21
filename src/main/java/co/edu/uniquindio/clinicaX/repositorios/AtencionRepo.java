@@ -12,4 +12,6 @@ public interface AtencionRepo extends JpaRepository<Atencion, Integer> {
     Optional<Atencion> findAtencionByCitaCodigo(int codigoCita);
     //todas las atenciones asociadas a un médico a través de una cita específica
     List<Atencion> findAllByCita_MedicoCodigo(int codigoMedico);
+
+    Boolean existsByCitaCodigo(int codigoCita);
 }

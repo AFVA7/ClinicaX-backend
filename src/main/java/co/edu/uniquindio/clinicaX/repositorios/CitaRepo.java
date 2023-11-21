@@ -37,4 +37,5 @@ public interface CitaRepo extends JpaRepository<Cita, Integer> {
 
     Boolean existsByMedicoCodigoAndFechaCitaBetween(int codigo, LocalDateTime primerHorario, LocalDateTime ultimoHorario);
     Boolean existsByCodigoAndEstado(int codigo, EstadoCita estado);
+
 }

@@ -12,10 +12,13 @@ import co.edu.uniquindio.clinicaX.repositorios.CitaRepo;
 import co.edu.uniquindio.clinicaX.repositorios.MensajeRepo;
 import co.edu.uniquindio.clinicaX.repositorios.PQRSRepo;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.PQRServicio;
+import co.edu.uniquindio.clinicaX.servicios.validaciones.agendar.ValidadorDeCitas;
 import co.edu.uniquindio.clinicaX.servicios.validaciones.pqrs.PacienteTresPQRS;
+import co.edu.uniquindio.clinicaX.servicios.validaciones.pqrs.ValidadorPQRS;
 import jakarta.transaction.Transactional;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,11 +33,14 @@ public class PQRServicioImpl implements PQRServicio {
     private final PacienteTresPQRS validacion;
     private final MensajeRepo mensajeRepo;
     private final MensajeServicioImpl mensajeServicios;
+    @Autowired
+    List<ValidadorPQRS> validadores;
 
     @Override
     public int crearPQRS(RegistroPQRDTO datos) {
-        //valida que el paciente no tenga más de 3 PQRS en proceso o nuevas
-        validacion.validarTresPQRS(datos);
+
+        //validaciones
+        validadores.forEach(v->v.validar(datos));
         //obtener la cita
         Cita cita = validarCita(datos.codigoCita());
 

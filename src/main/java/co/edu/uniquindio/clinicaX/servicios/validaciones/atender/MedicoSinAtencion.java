@@ -1,27 +1,33 @@
 package co.edu.uniquindio.clinicaX.servicios.validaciones.atender;
 
 import co.edu.uniquindio.clinicaX.dto.medico.RegistroAtencionDTO;
+import co.edu.uniquindio.clinicaX.infra.errors.ValidacionDeIntegridadE;
+import co.edu.uniquindio.clinicaX.model.Cita;
 import co.edu.uniquindio.clinicaX.repositorios.CitaRepo;
+import co.edu.uniquindio.clinicaX.servicios.interfaces.CitaServicio;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Component
+//valida que el médico solo pueda atender citas de hoy
 public class MedicoSinAtencion implements ValidadorDeAtenciones{
     private final CitaRepo citaRepo;
     @Override
     public void validar(RegistroAtencionDTO datos) {
-        LocalDateTime fechaActual = LocalDateTime.now();
-        var primerHorario = fechaActual.withHour(7);
-        var ultimoHorario = fechaActual.withHour(19);
-
-        var medicoConAtencion = citaRepo.existsByMedicoCodigoAndFechaCitaBetween(
-                datos.codigoMedico(), primerHorario, ultimoHorario);
-        if (!medicoConAtencion){
-            throw new ValidationException("Solo puede atender citas de hoy");
+        Optional<Cita> optional = citaRepo.findById(datos.codigoCita());
+        if(optional.isEmpty()){
+            throw new ValidacionDeIntegridadE("No existe una cita con el código "+datos.codigoCita());
+        }
+        LocalDateTime fechaCita = optional.get().getFechaCita();
+        LocalDate fechaActual = LocalDate.now();
+        if(!fechaCita.toLocalDate().isEqual(fechaActual)){
+            throw new ValidationException("El médico solo puede atender citas de hoy");
         }
     }
 }
