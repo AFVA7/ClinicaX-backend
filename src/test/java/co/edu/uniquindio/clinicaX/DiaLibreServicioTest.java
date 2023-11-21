@@ -1,11 +1,8 @@
 package co.edu.uniquindio.clinicaX;
 
-import co.edu.uniquindio.clinicaX.dto.admin.HorarioDTO;
-import co.edu.uniquindio.clinicaX.dto.admin.RegistroMedicoDTO;
+import co.edu.uniquindio.clinicaX.dto.medico.DetalleDiaLibreDTO;
 import co.edu.uniquindio.clinicaX.dto.medico.DiaLibreDTO;
-import co.edu.uniquindio.clinicaX.model.enums.*;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.DiaLibreServicio;
-import co.edu.uniquindio.clinicaX.servicios.interfaces.MedicoServicio;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -22,17 +18,13 @@ import java.util.List;
 public class DiaLibreServicioTest {
     @Autowired
     private DiaLibreServicio diaLibreServicios;
-    @Autowired
-    private MedicoServicio medicoServicio;
 
     @Test
-    public void crearTest() throws Exception {
-        List<HorarioDTO> horarios = new ArrayList<>();
-        int medico = medicoServicio.crearMedico(new RegistroMedicoDTO("Zayra Parra", "768786", Ciudad.ARMENIA, Especialidad.PEDIATRIA,"879896", "zay@gmail.com","111", "url-foto",horarios));
+    public void crearTest() {
         DiaLibreDTO diaLibreDTO = new DiaLibreDTO(
-                1,
-                medico,
-                LocalDate.of(2023,12,15)
+                6,
+                LocalDate.of(2023,12,15),
+                "motivo"
 
         );
         int nuevo = diaLibreServicios.crear(diaLibreDTO);
@@ -42,14 +34,15 @@ public class DiaLibreServicioTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void updateTest() throws Exception {
-        DiaLibreDTO guardado = diaLibreServicios.obtener(1);
-        DiaLibreDTO modificado = new DiaLibreDTO(
+        DetalleDiaLibreDTO guardado = diaLibreServicios.obtener(1);
+        DetalleDiaLibreDTO modificado = new DetalleDiaLibreDTO(
                 guardado.codigo(),
                 guardado.codigoMedico(),
-                LocalDate.of(2024,12,15)
+                LocalDate.of(2024,12,15),
+                "motivo mofidicado"
         );
         diaLibreServicios.update(modificado);
-        DiaLibreDTO objetoModificado = diaLibreServicios.obtener(1);
+        DetalleDiaLibreDTO objetoModificado = diaLibreServicios.obtener(1);
         Assertions.assertEquals(LocalDate.of(2024,12,15), objetoModificado.fecha());
     }
 
@@ -62,7 +55,7 @@ public class DiaLibreServicioTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void listarTest() {
-        List<DiaLibreDTO> lista = diaLibreServicios.listar();
+        List<DetalleDiaLibreDTO> lista = diaLibreServicios.listar();
         lista.forEach(System.out::println);
         Assertions.assertEquals(5, lista.size());
     }

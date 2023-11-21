@@ -90,13 +90,12 @@ public class MedicoServicioTest {
     }
 
     @Test
+    @Sql("classpath:dataset.sql")
     public void agendarDiaLibreTest() throws Exception {
-        List<HorarioDTO> horarios = new ArrayList<>();
-        int medico = medicoServicio.crearMedico(new RegistroMedicoDTO("Zayra Parra", "768786", Ciudad.ARMENIA, Especialidad.PEDIATRIA,"879896", "zay@gmail.com","111", "url-foto",horarios));
         DiaLibreDTO diaLibreDTO = new DiaLibreDTO(
-                1,
-                medico,
-                LocalDate.of(2023,12,30)
+                6,
+                LocalDate.of(2023,12,30),
+                "motivo"
 
         );
         int dia = medicoServicio.agendarDiaLibre(diaLibreDTO);

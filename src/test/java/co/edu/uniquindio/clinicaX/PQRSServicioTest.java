@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
@@ -71,7 +70,7 @@ public class PQRSServicioTest {
         );
         //mensaje que se crea
         int nuevo = pqrServicio.responderPQRS(datosParaElNuevoMsj);
-        System.out.println(mensajeServicios.obtener(nuevo).mensajesAsociados());
+        System.out.println(mensajeServicios.obtener(nuevo).mensajeAsociado());
         System.out.println(mensajeServicios.obtener(nuevo).contenido());
         Assertions.assertNotEquals(0, nuevo);
     }
