@@ -22,7 +22,7 @@ public class ImagenServicioImpl implements ImagenServicio {
 
     public ImagenServicioImpl(){
         Map<String, String> config = new HashMap<>();
-        config.put("cloud_name", "dmp5l88nh");
+        config.put("cloud_name", "andres-valencia");
         config.put("api_key", "657353111774894");
         config.put("api_secret", "iPDC5j1-WInT9BnGAkg8Phl-Nj8");
         cloudinary = new Cloudinary(config);
@@ -33,7 +33,7 @@ public class ImagenServicioImpl implements ImagenServicio {
         File file = convertir(imagen);
 
         return cloudinary.uploader().upload(file, ObjectUtils.asMap("folder",
-                "clinica"));//? es esta ruta?
+                "clinica"));
     }
 
     @Override

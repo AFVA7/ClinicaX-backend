@@ -180,9 +180,9 @@ public class CitaServicioImpl implements CitaServicio {
 
     @Override
     public List<DetalleCitaDTO> listarCitasParaPQRS(int codigo) {
-        List<Cita> citas = citaRepo.findAllByPacienteCodigo(codigo);
+        List<Cita> citas = citaRepo.findAllByPacienteCodigoAndEstado(codigo, EstadoCita.COMPLETADA);
         if (citas.isEmpty()) {
-            throw new ValidationException("El paciente no tiene citas");
+            throw new ValidationException("Solo puede hacer un PQRS de citas que estén atendidas/completadas");
         }
         return citas.stream().map(DetalleCitaDTO::new).toList();
     }

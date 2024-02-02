@@ -20,6 +20,7 @@ public interface CitaRepo extends JpaRepository<Cita, Integer> {
     List<Cita> findCitaByPacienteCodigoAndFechaCitaBetween(int codigoPaciente, LocalDateTime fechaCita, LocalDateTime fechaCita2);
     List<Cita> findAllByMedicoCodigo(int codigoMedico);
     List<Cita> findAllByPacienteCodigo(int codigoPaciente);
+    List<Cita> findAllByPacienteCodigoAndEstado(int codigoPaciente, EstadoCita estadoCita);
     Boolean existsByPacienteCodigoAndFechaCitaBetweenAndEstadoNot(
             Integer idPaciente, LocalDateTime primerHorario, LocalDateTime ultimoHorario, EstadoCita estadoCita);
     Boolean existsByMedicoCodigoAndFechaCita(

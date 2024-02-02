@@ -10,8 +10,6 @@ import co.edu.uniquindio.clinicaX.model.enums.EstadoCita;
 import co.edu.uniquindio.clinicaX.repositorios.AtencionRepo;
 import co.edu.uniquindio.clinicaX.repositorios.CitaRepo;
 import co.edu.uniquindio.clinicaX.servicios.interfaces.AtencionServicio;
-import co.edu.uniquindio.clinicaX.servicios.validaciones.agendar.ValidadorDeCitas;
-import co.edu.uniquindio.clinicaX.servicios.validaciones.atender.MedicoSinAtencion;
 import co.edu.uniquindio.clinicaX.servicios.validaciones.atender.ValidadorDeAtenciones;
 import jakarta.transaction.Transactional;
 import jakarta.validation.ValidationException;
@@ -28,7 +26,6 @@ import java.util.Optional;
 public class AtencionServicioImpl implements AtencionServicio {
     private final AtencionRepo atencionRepo;
     private final CitaRepo citaRepo;
-    private final MedicoSinAtencion validacion;
     @Autowired
     List<ValidadorDeAtenciones> validadores;
     @Override

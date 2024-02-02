@@ -27,8 +27,13 @@ public class AtencionController {
         atencionServicios.eliminar(codigo);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Atención removida correctamente"));
     }
+    @GetMapping("/detalleRelacionadoACita/{codigo}")
+    public ResponseEntity<MensajeDTO<DetalleAtencionMedicaDTO>> verDetalledetalleRelacionadoACita(@PathVariable int codigo) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, atencionServicios.verDetalleRelacionadoACita(codigo)));
+    }
+
     @GetMapping("/detalle/{codigo}")
     public ResponseEntity<MensajeDTO<DetalleAtencionMedicaDTO>> verDetalle(@PathVariable int codigo) throws Exception{
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, atencionServicios.verDetalleRelacionadoACita(codigo)));
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, atencionServicios.verDetalle(codigo)));
     }
 }
